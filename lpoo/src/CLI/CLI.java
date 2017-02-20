@@ -1,32 +1,29 @@
 package CLI;
 
 import Logic.Logic.*;
+import Logic.Map.*;
 
 public class CLI {
-	Logic.Logic logic;
+	public Logic.Logic logic;
+	public Logic.Map map;
+	public Logic.Hero hero;
 	
-	static public void main()
-	{
+	
+	
+	
+	
+	public static void main(String[] args) {
 		CLI cli =new CLI();
-		cli.printMap();
+		cli.map.Draw(); 
+		cli.hero.Update();
 	}
-	public CLI()
-	{
+	
+	
+	public CLI(){
 		logic = new Logic.Logic();
+		map = new Logic.Map();
 	}
-	public printMap()
-	{
-			
-		for (int x = 0; x < map.length; x++)
-		{
-			for (int y = 0; y < map[x].length; y++) {
-				System.out.print(map[x][y]);
-				System.out.print(" ");
-			}
-			System.out.print("\n");
+	
 
-				
-		}
-	}
 
 }
