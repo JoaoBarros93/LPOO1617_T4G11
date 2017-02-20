@@ -17,7 +17,8 @@ public class Hero {
 
 		switch (direction) {
 		case 'w':
-			if (map[x - 1][ y] != 'X') {
+			if (map[x - 1][ y] != 'X') 
+			{
 				map[x][y] = ' ';
 				hero_x--;
 				// System.out.print(hero_y);

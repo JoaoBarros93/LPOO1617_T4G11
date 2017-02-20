@@ -1,40 +1,19 @@
 package Logic;
 
+import Logic.Map;
+import Logic.Hero;
 
-//import java.io.BufferedReader;
 
-//import java.io.InputStreamReader;
 
-/*
-import java.util.Scanner;
-public class f1 {
-public static void main(String[] args) {
-  Scanner scanner = new Scanner(System.in);
-  System.out.print("What is your favorite color? ");
-  String name = scanner.next();
-  System.out.println("Your favorite color is: " + name);
-}
-}
-
-*/
-import java.util.Scanner;
-
-public class logic {
+public class Logic {
 	private Hero hero; 
+	private Map map;
+	public Logic()
+	{
+		
+	}
 	public static void main(String[] args) {
-		int hero_x = 1;
-		int hero_y = 1;
 
-		char map[][] = { { 'X', ' ', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
-				{ 'X', 'H', ' ', ' ', 'I', ' ', 'X', ' ', 'G', 'X' },
-				{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
-				{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', ' ', ' ', 'X' },
-				{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
-				{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-				{ 'I', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
-				{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' },
-				{ 'X', ' ', 'I', ' ', 'I', ' ', 'X', 'k', ' ', 'X' },
-				{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
 
 		for (int x = 0; x < map.length; x++) {
 			for (int y = 0; y < map[x].length; y++) {
@@ -95,6 +74,8 @@ public class logic {
 			System.out.print("\n");
 
 		}
+		
+		
 
 		/*
 		 * function Update() { if (Input.GetKeyDown(KeyCode.W)) pos.y +=
@@ -117,5 +98,43 @@ public class logic {
 		 * 
 		 */
 	}
+	public void update ()
+	{
+		switch (direction) {
+		case 'w':
+			if (map[x - 1][ y] != 'X') 
+			{
+				map[x][y] = ' ';
+				hero_x--;
+				// System.out.print(hero_y);
+				map[hero_x][hero_y] = 'H';
 
+			}
+			break;
+		case 'a':
+			if (map[hero_x][hero_y - 1] != 'X') {
+				map[hero_x][hero_y] = ' ';
+				hero_y--;
+				// System.out.print(hero_y);
+				map[hero_x][hero_y] = 'H';
+			}
+			break;
+		case 'd':
+			if (map[hero_x][hero_y + 1] != 'X') {
+				map[hero_x][hero_y] = ' ';
+				hero_y++;
+				// System.out.print(hero_y);
+				map[hero_x][hero_y] = 'H';
+			}
+			break;
+		case 's':
+			if (map[hero_x + 1][hero_y] != 'X') {
+				map[hero_x][hero_y] = ' ';
+				hero_x++;
+				// System.out.print(hero_y);
+				map[hero_x][hero_y] = 'H';
+			}
+			break;
+		}
+	}
 }
