@@ -19,8 +19,8 @@ public static void main(String[] args) {
 */
 import java.util.Scanner;
 
-public class f1 {
-
+public class logic {
+	private Hero hero; 
 	public static void main(String[] args) {
 		int hero_x = 1;
 		int hero_y = 1;
