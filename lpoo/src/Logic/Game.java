@@ -2,9 +2,9 @@ package Logic;
 
 
 public class Game {
-	DungeonLevel level1;
-	OgreLevel level2;
-	Boolean showMapLastTime=false;
+	private DungeonLevel level1;
+	private OgreLevel level2;
+	private Boolean showMapLastTime=false;
 	
 
 	public Game(int guardPersona, int numOgres) {

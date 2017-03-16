@@ -5,25 +5,25 @@ import java.util.Random;
 public class Guard extends Character {
 	
 
-	public char moves[] = { 'a', 's', 's', 's', 's', 'a', 'a', 'a', 'a', 'a', 'a', 's', 
+	private char moves[] = { 'a', 's', 's', 's', 's', 'a', 'a', 'a', 'a', 'a', 'a', 's', 
 							'd', 'd', 'd', 'd', 'd', 'd', 'd', 'w', 'w', 'w', 'w', 'w' };
 	
-	int nextMove = 0;
-	boolean isMovingFront= true;
-	int isAsleep= 0;
+	private int nextMove = 0;
+	private boolean isMovingFront= true;
+	private int isAsleep= 0;
 	
 	//0-not moving
 	//1-rookie
 	//2-Druken
 	//3-Suspicious
-	int guardPersona;
+	private int guardPersona;
 
 	public Guard(int pos_x, int pos_y, int guardPersona) {
 		super(pos_x, pos_y);
 		this.guardPersona= guardPersona;
 	}
 	
-	boolean isAsleep(){
+	public boolean isAsleep(){
 		return (isAsleep!=0);
 		
 	}

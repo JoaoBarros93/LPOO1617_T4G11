@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Ogre extends Character {
 	private boolean isOnKey = false;
 	private int isStunned = 0;
-	Cube cube;
+	private Cube cube;
 
 	public Ogre(int pos_x, int pos_y) {	
 		super(pos_x, pos_y);

@@ -8,7 +8,6 @@ public class Door extends Object {
 	
 	public Door(int pos_x, int pos_y) {
 		super(pos_x, pos_y);
-		// TODO Auto-generated constructor stub
 	}
 
 	

@@ -4,9 +4,9 @@ import java.util.Vector;
 
 public class DungeonLevel implements IGameLogicLevel {
 	
-	public char wallChar = 'X';
+	private char wallChar = 'X';
 	
-	public char map[][] = { 
+	private char map[][] = { 
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ', 'X' }, 
 			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },

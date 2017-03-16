@@ -2,9 +2,9 @@ package Logic;
 
 public class Hero extends Character{
 	
-	boolean isAlive=true;
-	boolean hasKey=false;
-	boolean isArmed=false;
+	private boolean isAlive=true;
+	private boolean hasKey=false;
+	private boolean isArmed=false;
 
 	public Hero(int pos_x, int pos_y) {
 		super(pos_x, pos_y);

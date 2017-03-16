@@ -4,8 +4,8 @@ import java.util.Vector;
 
 public class Key extends Object {
 	
-	boolean isHit=false;
-	Vector<Door> doors;
+	private boolean isHit=false;
+	private Vector<Door> doors;
 	
 	public void keyWasHit(){
 		isHit=true;

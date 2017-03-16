@@ -4,13 +4,15 @@ import java.util.Vector;
 
 public class Lever extends Object {
 	
+	
+
+	private boolean isActivated=false;
+	private Vector<Door> doors;
+	
 	public Lever(int pos_x, int pos_y) {
 		super(pos_x, pos_y);
 		doors= new Vector<Door>();
 	}
-
-	private boolean isActivated=false;
-	Vector<Door> doors;
 	
 	public void activateLever(){
 		isActivated=true;

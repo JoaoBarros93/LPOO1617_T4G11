@@ -6,11 +6,11 @@ import java.util.Vector;
 public class OgreLevel implements IGameLogicLevel{
 	
 	
-	public char wallChar = 'X';	
-	boolean isBeaten;
+	private char wallChar = 'X';	
+	private boolean isBeaten;
 	
 	
-	public char map[][] = { 
+	private char map[][] = { 
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
 			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },

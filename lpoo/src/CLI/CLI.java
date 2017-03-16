@@ -33,7 +33,7 @@ public class CLI {
 	}
 
 
-	private static void startGame(Scanner in) {
+	public static void startGame(Scanner in) {
 		char dir;
 		boolean playGame = true;
 		
@@ -48,13 +48,13 @@ public class CLI {
 		}
 	}
 
-	private static void drawMap() {
+	public static void drawMap() {
 		System.out.println(game.getMap());
 
 	}
 
 	
-	private static char getHeroDirection(Scanner in) {
+	public static char getHeroDirection(Scanner in) {
 		String dir;
 
 	
@@ -104,7 +104,7 @@ public class CLI {
 	}
 
 
-	private static void GameResults() {
+	public static void GameResults() {
 		int res=game.results();
 		
 		switch (res) {

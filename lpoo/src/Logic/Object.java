@@ -2,8 +2,8 @@ package Logic;
 
 public abstract class Object {
 
-	int pos_x;
-	int pos_y;
+	private int pos_x;
+	private int pos_y;
 	
 	public Object(int pos_x,	int pos_y){
 		this.pos_x=pos_x;
