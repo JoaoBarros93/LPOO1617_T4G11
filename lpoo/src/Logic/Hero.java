@@ -1,64 +1,89 @@
 package Logic;
 
-import java.util.Scanner;
-import Logic.Map;
-import Logic.Logic;
+public class Hero extends Character{
+	
+	boolean isAlive=true;
+	boolean hasKey=false;
+	boolean isArmed=false;
 
-public class Hero {
-	int x = 1;
-	int y = 1;
-	
-	Logic logic;
-	
-	Hero(Logic l){
-		logic = l;
+	public Hero(int pos_x, int pos_y) {
+		super(pos_x, pos_y);
 	}
 	
-	public void Update(){
-		
-		//Scanner scanner = new Scanner(System.in);
-		//System.out.print("What direction do you want your character to move? ");
-		//char direction = scanner.next().charAt(0);
-		char direction = 'w';
+	@Override
+	public String toString() {
+		if (hasKey)
+			return "K";
+		else if (isArmed)
+			return "A";
+		return "H";
+	}
 
-		Map map = logic.getMap();
-		
-		switch (direction) {
-		case 'w':
-			if (logic.getMap().getMap()[x - 1][ y] != 'X') 
-			{
-				logic.getMap().getMap()[x][y] = ' ';
-				x--;
-				logic.getMap().getMap()[x][y] = 'H';
-
-			}
-			break;
-		case 'a':
-			if (logic.getMap().getMap()[x][y - 1] != 'X') {
-				logic.getMap().getMap()[x][y] = ' ';
-				y--;
+	public boolean isAlive() {
+		return isAlive;
+	}
 	
-				logic.getMap().getMap()[x][y] = 'H';
+	public boolean hasKey(){
+		return hasKey;	
+	}
+	
+	public void pickKey(){
+		hasKey=true;
+		 
+	}
+	
+	public boolean isArmed(){
+		return hasKey;	
+	}
+	
+	public void pickClub(){
+		isArmed=true;		 
+	}
+
+
+	
+	public boolean move(char dir, IGameLogicLevel level) {
+		boolean validMove = false;
+
+		switch (dir) {
+		case 'w':
+			if (level.heroCanMoveTo(getX(), getY() - 1)) {
+				moveUp();
+				validMove = true;
 			}
 			break;
-		case 'd':
-			if (logic.getMap().getMap()[x][y + 1] != 'X') {
-				logic.getMap().getMap()[x][y] = ' ';
-				y++;
-				logic.getMap().getMap()[x][y] = 'H';
-			}
-			break;
+
 		case 's':
-			if (logic.getMap().getMap()[x + 1][y] != 'X') {
-				logic.getMap().getMap()[x][y] = ' ';
-				x++;
-				logic.getMap().getMap()[x][y] = 'H';
+			if (level.heroCanMoveTo(getX(), getY() + 1)) {
+				moveDown();
+				validMove = true;
 			}
 			break;
-		}
-		}
-		
 
+		case 'a':
+			if (level.heroCanMoveTo(getX() - 1, getY())) {
+				moveLeft();
+				validMove = true;
+			}
+			break;
+
+		case 'd':
+			if (level.heroCanMoveTo(getX() + 1, getY())) {
+				moveRight();
+				validMove = true;
+			}
+			break;
+
+		}
+		return validMove;
+
+	}
+
+	public boolean isNextTo(Character character) {
+		if (((Math.abs(getX() - character.getX()) <= 1) && (Math.abs(getY() - character.getY()) <= 0)) ||
+				((Math.abs(getX() - character.getX()) <= 0) && (Math.abs(getY() - character.getY()) <= 1)))
+			return true;
+		else
+			return false;
+	}
 }
-
-
