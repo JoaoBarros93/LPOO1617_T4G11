@@ -155,6 +155,8 @@ public class Ogre extends Character {
 	public String toString() {
 		if(isOnKey)
 			return "$";
+		else if(isStunned())
+			return "8";
 		return "0";
 	}
 

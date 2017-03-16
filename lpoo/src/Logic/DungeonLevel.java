@@ -147,7 +147,7 @@ public class DungeonLevel implements IGameLogicLevel {
 		
 		
 		// check is player is next to Guard
-		if (hero.isNextTo(guard)) {
+		if (hero.isNextTo(guard)&&!guard.isAsleep()) {
 			return false;
 		}
 		
@@ -175,6 +175,9 @@ public class DungeonLevel implements IGameLogicLevel {
 		for (Door i : lever.getDoors())
 			if (i.positionIs(x, y) && !i.isOpen())
 				return false;
+		
+		if (guard.positionIs(x, y))
+			return false;
 
 		return true;
 	}

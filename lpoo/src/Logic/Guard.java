@@ -1,5 +1,7 @@
 package Logic;
 
+import java.util.Random;
+
 public class Guard extends Character {
 	
 
@@ -8,7 +10,7 @@ public class Guard extends Character {
 	
 	int nextMove = 0;
 	boolean isMovingFront= true;
-	boolean isAsleep= false;
+	int isAsleep= 0;
 	
 	//0-not moving
 	//1-rookie
@@ -21,32 +23,98 @@ public class Guard extends Character {
 		this.guardPersona= guardPersona;
 	}
 	
+	boolean isAsleep(){
+		return (isAsleep!=0);
+		
+	}
+	
 	
 
 	@Override
 	public String toString() {
+		if(isAsleep())
+			return "g";
 		return "G";
 	}
 	
-	public void move(){
-		
-		switch(guardPersona)
-		{
-		case 0: return;
-		
-		case 1:  movefront();
+	public void move() {
 
-			break;
-		case 2: //Drunken 
-
-			break;
-		case 3: //Suspicious 
-		break;
-		}
-		
-		if(guardPersona==0)
+		switch (guardPersona) {
+		case 0: // Not Moving-for tests
 			return;
-		
+
+		case 1: // Rookie
+			movefront();
+			return;
+		case 2:
+			moveDruken();
+			return;
+
+		case 3:
+			moveSuspicious();
+			return;
+		}
+
+		if (guardPersona == 0)
+			return;
+
+	}
+	
+	public void moveDruken() {
+		if (isAsleep()) {
+			isAsleep--;
+			return;
+
+		}
+		Random ran = new Random();
+		int num = ran.nextInt(8);
+		if (num == 7) {
+			isAsleep = 3;
+			if (isMovingFront)
+				if (nextMove == 0)
+					nextMove = 23;
+				else
+					nextMove--;
+			else if (nextMove == 23)
+				nextMove = 0;
+			else
+				nextMove++;
+			isMovingFront = !isMovingFront;
+
+		}
+
+		if (isMovingFront)
+			movefront();
+		else
+			moveback();
+
+	}
+
+	public void moveSuspicious() {
+		Random rand = new Random();
+		int nume;
+		if (isMovingFront)
+			nume = rand.nextInt(7);
+		else
+			nume = rand.nextInt(3);
+		if (nume == 2) {
+			if (isMovingFront)
+				if (nextMove == 0)
+					nextMove = 23;
+				else
+					nextMove--;
+			else if (nextMove == 23)
+				nextMove = 0;
+			else
+				nextMove++;
+
+			isMovingFront = !isMovingFront;
+		}
+		if (isMovingFront)
+			movefront();
+		else
+			moveback();
+
 	}
 	
 	public void movefront() {
@@ -86,19 +154,19 @@ public class Guard extends Character {
 
 		switch (dir) {
 		case 'w':
-			moveUp();
+			moveDown();
 			break;
 			
 		case 's':
-			moveDown();
+			moveUp();
 			break;
 
 		case 'a':
-			moveLeft();
+			moveRight();
 			break;
 
 		case 'd':
-			moveRight();
+			moveLeft();
 			break;
 		}
 	}
