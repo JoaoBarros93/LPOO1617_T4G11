@@ -4,7 +4,7 @@ import Logic.Logic.*;
 import Logic.Map.*;
 
 public class CLI {
-	public Logic.Logic logic;
+	public Logic.Logic logic2;
 	public Logic.Map map;
 	public Logic.Hero hero;
 	
