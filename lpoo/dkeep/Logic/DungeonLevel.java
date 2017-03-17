@@ -36,7 +36,7 @@ public class DungeonLevel implements IGameLogicLevel {
 				if(map[y][x]=='X'||map[y][x]==' ')
 					continue;
 				else if(map[y][x]=='k')
-					lever=new Lever(x,y);
+					lever.setPosXY(x,y);
 					else if(map[y][x]=='H')
 						hero=new Hero(x,y);
 					else if(map[y][x]=='I')
@@ -148,6 +148,7 @@ public class DungeonLevel implements IGameLogicLevel {
 		
 		// check is player is next to Guard
 		if (hero.isNextTo(guard)&&!guard.isAsleep()) {
+			hero.wasKilled();
 			return false;
 		}
 		

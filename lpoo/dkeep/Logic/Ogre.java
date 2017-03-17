@@ -6,6 +6,7 @@ public class Ogre extends Character {
 	private boolean isOnKey = false;
 	private int isStunned = 0;
 	private Cube cube;
+	private boolean canMove=true;
 
 	public Ogre(int pos_x, int pos_y) {	
 		super(pos_x, pos_y);
@@ -22,6 +23,8 @@ public class Ogre extends Character {
 	}
 
 	public void move(OgreLevel ogreLevel) {
+		if(!canMove)
+			return;
 
 		if(isStunned!=0){
 			isStunned--;
@@ -74,6 +77,10 @@ public class Ogre extends Character {
 
 		}
 		atack(ogreLevel);
+	}
+
+	public void setCanMove(boolean canMove) {
+		this.canMove = canMove;
 	}
 
 	public void atack(OgreLevel ogreLevel) {

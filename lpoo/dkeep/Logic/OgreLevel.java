@@ -44,6 +44,43 @@ public class OgreLevel implements IGameLogicLevel{
 		}
 
 	}
+	
+	public OgreLevel(boolean ogreCanMove, char map[][]) {
+		this.map=map;
+		
+		key = new Key(-1,-1);
+		otherDoors= new Vector<Door>();
+		enemies= new Vector<Ogre>();
+		for(int y = 0; y < map.length; y++)
+			for(int x = 0; x < map.length; x++){
+				if(map[y][x]=='X'||map[y][x]==' ')
+					continue;
+				else if(map[y][x]=='k')
+					key.setPosXY(x,y);
+					else if(map[y][x]=='H')
+						hero=new Hero(x,y);
+					else if(map[y][x]=='I')
+						key.addDoor(new Door(x,y));
+					else if(map[y][x]=='0'){
+						Ogre og = new Ogre(x,y);
+						og.setCanMove(ogreCanMove);
+						enemies.add(og);
+					}
+			}
+		
+	}
+
+	public Hero getHero() {
+		return hero;
+	}
+
+	public Vector<Ogre> getEnemies() {
+		return enemies;
+	}
+
+	public Key getKey() {
+		return key;
+	}
 
 	public boolean isBeaten(){
 		return isBeaten;	
@@ -93,6 +130,7 @@ public class OgreLevel implements IGameLogicLevel{
 		// check is player is next to Ogre Cube
 		for (Ogre j : enemies)
 			if (j.getCube().isNextTo(hero)&&!j.isStunned()) {
+				hero.wasKilled();
 				return false;
 			}
 		

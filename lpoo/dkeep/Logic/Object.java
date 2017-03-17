@@ -2,8 +2,8 @@ package Logic;
 
 public abstract class Object {
 
-	private int pos_x;
-	private int pos_y;
+	protected int pos_x;
+	protected int pos_y;
 	
 	public Object(int pos_x,	int pos_y){
 		this.pos_x=pos_x;
@@ -17,6 +17,14 @@ public abstract class Object {
 	public int getY() {
 		return pos_y;
 	}
+	
+	
+
+	public void setPosXY(int pos_x, int pos_y) {
+		this.pos_x = pos_x;
+		this.pos_y = pos_y;
+	}
+
 	
 	public boolean positionIs(int x, int y){
 		if(pos_x== x && pos_y==y)

@@ -4,7 +4,6 @@ package Logic;
 public class Game {
 	private DungeonLevel level1;
 	private OgreLevel level2;
-	private Boolean showMapLastTime=false;
 	
 
 	public Game(int guardPersona, int numOgres) {

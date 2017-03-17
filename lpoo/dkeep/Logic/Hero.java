@@ -10,6 +10,10 @@ public class Hero extends Character{
 		super(pos_x, pos_y);
 	}
 	
+	public void wasKilled() {
+		this.isAlive = false;
+	}
+
 	@Override
 	public String toString() {
 		if (hasKey)
@@ -30,10 +34,6 @@ public class Hero extends Character{
 	public void pickKey(){
 		hasKey=true;
 		 
-	}
-	
-	public boolean isArmed(){
-		return hasKey;	
 	}
 	
 	public void pickClub(){
