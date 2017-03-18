@@ -32,7 +32,7 @@ public class DungeonLevel implements IGameLogicLevel {
 		lever = new Lever(-1,-1);
 		otherDoors= new Vector<Door>();
 		for(int y = 0; y < map.length; y++)
-			for(int x = 0; x < map.length; x++){
+			for(int x = 0; x < map[y].length; x++){
 				if(map[y][x]=='X'||map[y][x]==' ')
 					continue;
 				else if(map[y][x]=='k')

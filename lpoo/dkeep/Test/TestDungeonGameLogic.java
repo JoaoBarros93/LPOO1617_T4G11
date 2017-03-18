@@ -77,5 +77,36 @@ public class TestDungeonGameLogic {
 		assertTrue(level1.isBeaten());
 
 	}
+	
+	@Test
+	public void testBeatsLevelRookieGuard() {
+		DungeonLevel level1 = new DungeonLevel(1);
+		char heroMoves[] = { 'd', 'd', 's', 's', 's', 's', 's', 's', 's', 'w', 'w', 'd', 'd', 'd', 'd', 'd', 's', 's',
+				'a', 'd', 'w', 'w', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a' };
+		assertTrue(level1.getHero().positionIs(1, 1));
+		assertFalse(level1.isBeaten());
+		for(char i: heroMoves){
+			level1.update(i);
+		}
+		assertTrue(level1.isBeaten());
+	}
+	
+	@Test
+	public void testCompareTwoMaps() {
+		DungeonLevel level1 = new DungeonLevel(0, map);
+		assertTrue(level1.getHero().positionIs(1, 1));
+		
+		String map1s = level1.toString();
+		
+		level1.update('s');		
+		String map2s = level1.toString();
+		
+		assertFalse(map1s.equals(map2s));
+		
+		level1.update('w');		
+		String map3s = level1.toString();
+		
+		assertTrue(map1s.equals(map3s));
+	}
 
 }

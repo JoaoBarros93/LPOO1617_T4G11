@@ -8,15 +8,16 @@ import org.junit.Test;
 import Logic.OgreLevel;
 
 public class TestOgreMovingLevel {
-	private char[][] map = 	{ 
-			{ 'X', 'X', 'X', 'X', 'X' }, 
-			{ 'X', 'H', ' ', '0', 'X' }, 
-			{ 'I', ' ', ' ', 'k', 'X' },
-			{ 'I', ' ', ' ', ' ', 'X' }, 
-			{ 'X', 'X', 'X', 'X', 'X' }};
+
 
 	@Test
 	public void testMoveHeroNextToOgre() {
+		char[][] map = 	{ 
+				{ 'X', 'X', 'X', 'X', 'X' }, 
+				{ 'X', 'H', ' ', '0', 'X' }, 
+				{ 'I', ' ', ' ', 'k', 'X' },
+				{ 'I', ' ', ' ', ' ', 'X' }, 
+				{ 'X', 'X', 'X', 'X', 'X' }};
 		OgreLevel level2 = new OgreLevel(true, map);
 		assertTrue(level2.getHero().positionIs(1, 1));
 		level2.update('d');
@@ -24,32 +25,76 @@ public class TestOgreMovingLevel {
 		assertTrue(level2.getHero().isNextTo(level2.getEnemies().get(0)));
 		assertTrue(level2.getEnemies().get(0).isStunned());
 	}
+	
+	@Test//(timeout=1000)
+	public void testMoveOgreNextToHero() {
+		char[][] map = 	{ 
+				{ 'X', 'X', 'X', 'X', 'X' }, 
+				{ 'X', 'H', ' ', ' ', 'X' },
+				{ 'X', ' ', ' ', 'k', 'X' }, 
+				{ 'I', ' ', ' ', ' ', 'X' }, 
+				{ 'I', ' ', ' ', '0', 'X' },
+				{ 'X', 'X', 'X', 'X', 'X' } };
+		OgreLevel level2 = new OgreLevel(true, map);
+		assertTrue(level2.getHero().positionIs(1, 1));
+		
+		do{
+			if(level2.getHero().positionIs(1, 1))
+				level2.update('d');
+			else level2.update('a');			
+		}
+		while(!level2.getHero().isNextTo(level2.getEnemies().get(0)));
+		
+		assertTrue(level2.getHero().isNextTo(level2.getEnemies().get(0)));
+	}
 
-	@Test
+	@Test(timeout=1000)
 	public void testHeroGetsHitByClub() {
+		char[][] map = 	{ 
+				{ 'X', 'X', 'X', 'X', 'X' }, 
+				{ 'X', 'H', ' ', '0', 'X' }, 
+				{ 'I', ' ', ' ', 'k', 'X' },
+				{ 'I', '0', ' ', '0', 'X' }, 
+				{ 'X', 'X', 'X', 'X', 'X' }};
+		OgreLevel level2 = new OgreLevel(true, map);
+		assertTrue(level2.getHero().positionIs(1, 1));
 		
+		assertTrue(level2.getHero().isAlive());
 		
+		do{
+			if(level2.getHero().positionIs(1, 1))
+				level2.update('d');
+			else level2.update('a');			
+		}
+		while(level2.getHero().isAlive());
+		
+		assertFalse(level2.getHero().isAlive());
+}
+
+	@Test(timeout=1000)
+	public void testKeyGetsHit() {
+		char[][] map = { 
+				{ 'X', 'X', 'X', 'X', 'X', 'X', 'X' }, 
+				{ 'X', 'H', 'X', ' ', ' ', '0', 'X' },
+				{ 'X', ' ', 'X', ' ', ' ', ' ', 'X' }, 
+				{ 'X', 'X', 'X', 'k', ' ', ' ', 'X' },
+				{ 'I', ' ', ' ', ' ', ' ', ' ', 'X' }, 
+				{ 'I', '0', ' ', ' ', ' ', '0', 'X' },
+				{ 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
+		OgreLevel level2 = new OgreLevel(true, map);
+		assertTrue(level2.getHero().positionIs(1, 1));
+		assertTrue(level2.getHero().isAlive());
+		assertFalse(level2.getKey().isHit());
+
+		do {
+			if (level2.getHero().positionIs(1, 1))
+				level2.update('s');
+			else
+				level2.update('w');
+		} while (!level2.getKey().isHit());
+		assertTrue(level2.getKey().isHit());
 
 	}
 
-	@Test
-	public void testKeyGetsHitByClub() {
 	
-
-	}
-
-	@Test
-	public void testOgreOnTopOfKey() {
-	
-
-	}
-
-	@Test
-	public void testHeroBeatsLevel() {
-
-
-
-	}
-
-
 }

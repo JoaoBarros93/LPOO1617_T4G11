@@ -71,5 +71,24 @@ public class TestOgreNotMovingLevel {
 		assertTrue(level2.isBeaten());
 
 	}
+	
+	
+	@Test
+	public void testCompareTwoMaps() {
+		OgreLevel level2 = new OgreLevel(false, map);
+		assertTrue(level2.getHero().positionIs(1, 1));
+		
+		String map1s = level2.toString();
+		
+		level2.update('s');		
+		String map2s = level2.toString();
+		
+		assertFalse(map1s.equals(map2s));
+		
+		level2.update('w');		
+		String map3s = level2.toString();
+		
+		assertTrue(map1s.equals(map3s));
+	}
 
 }
