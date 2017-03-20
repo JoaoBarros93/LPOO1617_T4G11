@@ -11,6 +11,18 @@ public class Game {
 		level2=new OgreLevel(numOgres);
 		
 	}
+	
+	public Game(String guardPersonality, int numOgres) {
+		if (guardPersonality == "Rookie")
+			level1 = new DungeonLevel(1);
+		else if (guardPersonality == "Druken")
+			level1 = new DungeonLevel(2);
+		else if (guardPersonality == "Suspicious")
+			level1 = new DungeonLevel(3);
+
+		level2 = new OgreLevel(numOgres);
+
+	}
 		
 	
 	public boolean updateGame(char direction) {
