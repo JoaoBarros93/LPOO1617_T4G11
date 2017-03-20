@@ -66,6 +66,11 @@ public class Window {
 		fldGuardPersona.addItem("Suspicious");
 
 		JButton btnExitGame = new JButton("Exit Game");
+		btnExitGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btnExitGame.setBounds(553, 240, 100, 23);
 		frame.getContentPane().add(btnExitGame);
 
