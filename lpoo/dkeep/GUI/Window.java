@@ -11,6 +11,13 @@ import java.awt.event.ActionEvent;
 public class Window {
 
 	private JFrame frame;
+	JLabel lblNewLabel;
+	JTextArea textArea;
+	JButton btnUpButton;
+	JButton btnDownButton;
+	JButton btnLeftButton;
+	JButton btnRightButton;
+	
 	Game game;
 
 	/**
@@ -35,13 +42,54 @@ public class Window {
 	public Window() {
 		initialize();
 	}
+	
+	public void heroMove(char dir) {
+		boolean continueGame = game.updateGame(dir);
+		textArea.setText(game.getMap());
+		
+		//if true, continue playing
+		 if(continueGame)
+			 return;
+		 else gameOver();
+	 
+	}
+	
+	public void gameOver() {
+		disableButtons();
+		int result = game.results();
 
+		switch (result) {
+		case 0:
+			lblNewLabel.setText("You Won the Game!");
+			break;
+		case 1:
+			lblNewLabel.setText("Game Over! The Guard has caught you!");
+			break;
+		case 2:
+			lblNewLabel.setText("Game Over! A Ogre has killed you!");
+			break;
+
+		}
+
+	}
+	
+	public void disableButtons(){
+		btnRightButton.setEnabled(false);
+		btnLeftButton.setEnabled(false);
+		btnUpButton.setEnabled(false);
+		btnDownButton.setEnabled(false);
+		
+		
+	}
+
+
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 710, 370);
+		frame.setBounds(100, 100, 710, 467);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -60,7 +108,6 @@ public class Window {
 		JComboBox fldGuardPersona = new JComboBox();
 		fldGuardPersona.setBounds(116, 61, 80, 20);
 		frame.getContentPane().add(fldGuardPersona);
-		fldGuardPersona.addItem("Select");
 		fldGuardPersona.addItem("Rookie");
 		fldGuardPersona.addItem("Druken");
 		fldGuardPersona.addItem("Suspicious");
@@ -71,48 +118,59 @@ public class Window {
 				System.exit(0);
 			}
 		});
-		btnExitGame.setBounds(553, 240, 100, 23);
+		btnExitGame.setBounds(450, 236, 100, 23);
 		frame.getContentPane().add(btnExitGame);
 
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setFont(new Font("Courier New", Font.PLAIN, 13));
-		textArea.setBounds(26, 101, 285, 110);
+		textArea.setBounds(26, 101, 285, 218);
 		frame.getContentPane().add(textArea);
 		
-
-		JLabel lblNewLabel = new JLabel("You can start a new game.");
-		lblNewLabel.setBounds(28, 244, 283, 14);
+		lblNewLabel = new JLabel("You can start a new game.");
+		lblNewLabel.setBounds(26, 359, 283, 14);
 		frame.getContentPane().add(lblNewLabel);
 
-		JButton btnUpButton = new JButton("UP");
+		btnUpButton = new JButton("UP");
+		btnUpButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				heroMove('w');	
+				
+			}
+		});
 		btnUpButton.setEnabled(false);
-		btnUpButton.setBounds(553, 90, 89, 23);
+		btnUpButton.setBounds(450, 90, 89, 23);
 		frame.getContentPane().add(btnUpButton);
 
-		JButton btnDownButton = new JButton("DOWN");
+		btnDownButton = new JButton("DOWN");
 		btnDownButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.updateGame('s');
+				heroMove('s');	
 
 			}
 		});
 		btnDownButton.setEnabled(false);
-		btnDownButton.setBounds(553, 160, 89, 23);
+		btnDownButton.setBounds(450, 158, 89, 23);
 		frame.getContentPane().add(btnDownButton);
 
-		JButton btnLeftButton = new JButton("LEFT");
+		btnLeftButton = new JButton("LEFT");
 		btnLeftButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				heroMove('a');	
 
 			}
 		});
 		btnLeftButton.setEnabled(false);
-		btnLeftButton.setBounds(487, 124, 89, 23);
+		btnLeftButton.setBounds(387, 124, 89, 23);
 		frame.getContentPane().add(btnLeftButton);
 
-		JButton btnRightButton = new JButton("RIGHT");
+		btnRightButton = new JButton("RIGHT");
+		btnRightButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				heroMove('d');	
+			}
+		});
 		btnRightButton.setEnabled(false);
-		btnRightButton.setBounds(605, 124, 89, 23);
+		btnRightButton.setBounds(514, 124, 89, 23);
 		frame.getContentPane().add(btnRightButton);
 
 		JButton btnNewGame = new JButton("New Game");
@@ -123,10 +181,16 @@ public class Window {
 
 				numOgres = Integer.parseInt(fldNumOgres.getText());
 				guardPersonality = fldGuardPersona.getSelectedItem().toString();
+				
+				if(numOgres<0 || numOgres>5){
+					lblNewLabel.setText("Invalid number of Ogres.");
+					return;
+					
+				}
 
 				game = new Game(guardPersonality, numOgres);
 				
-				textArea.append(game.getMap());
+				textArea.setText(game.getMap());
 				
 				btnRightButton.setEnabled(true);
 				btnLeftButton.setEnabled(true);
@@ -137,8 +201,10 @@ public class Window {
 				
 			}
 		});
+		
+		
 
-		btnNewGame.setBounds(553, 7, 100, 23);
+		btnNewGame.setBounds(450, 36, 100, 23);
 		frame.getContentPane().add(btnNewGame);
 
 	}
