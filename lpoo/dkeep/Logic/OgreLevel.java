@@ -27,6 +27,10 @@ public class OgreLevel implements IGameLogicLevel{
 	private Key key;
 	private Vector<Door> otherDoors;
 
+	public Vector<Door> getOtherDoors() {
+		return otherDoors;
+	}
+
 	public OgreLevel(int numOgres) {
 		hero=new Hero(1,7);
 		enemies = new Vector<Ogre>();
@@ -45,6 +49,10 @@ public class OgreLevel implements IGameLogicLevel{
 
 	}
 	
+	public char[][] getMap() {
+		return map;
+	}
+
 	public OgreLevel(boolean ogreCanMove, char map[][]) {
 		this.map=map;
 		

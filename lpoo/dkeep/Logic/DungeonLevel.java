@@ -19,6 +19,11 @@ public class DungeonLevel implements IGameLogicLevel {
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } 
 			};
 	
+	public char[][] getMap() {
+		return map;
+	}
+
+
 	private Hero hero;
 	private Guard guard;
 	private Lever lever;
@@ -49,6 +54,10 @@ public class DungeonLevel implements IGameLogicLevel {
 	
 	public Hero getHero() {
 		return hero;
+	}
+
+	public Vector<Door> getOtherDoors() {
+		return otherDoors;
 	}
 
 	public Guard getGuard() {

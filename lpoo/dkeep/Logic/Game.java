@@ -1,5 +1,6 @@
 package Logic;
 
+import java.util.Vector;
 
 public class Game {
 	private DungeonLevel level1;
@@ -41,6 +42,15 @@ public class Game {
 		else return level2.toString();
 
 	}
+	
+	public char[][] getMapArray(){
+		if(!level1.isBeaten())
+			return level1.getMap();
+		else return level2.getMap();
+
+	}
+	
+	
 	//int = 0 - beaten
 	//int = 1 - lost on level 1
 	//int = 2 - lost on level 2
@@ -56,4 +66,46 @@ public class Game {
 		
 	}
 	
+	public int levelIsOn() {
+		if(!level1.isBeaten())
+			return 1;
+		else return 2;
+		
+	}
+	
+	
+	
+	public Hero getHero() {
+		if (!level1.isBeaten())
+			return level1.getHero();
+		else
+			return level2.getHero();
+	}
+
+	public Guard getGuard() {
+
+		return level1.getGuard();
+	}
+
+	public Lever getLever() {
+
+		return level1.getLever();
+
+	}
+
+	public Vector<Door> getDoors() {
+		if (!level1.isBeaten()) {
+			return level1.getOtherDoors();
+		} else
+			return level2.getOtherDoors();
+	}
+
+	public Vector<Ogre> getEnemies() {
+		return level2.getEnemies();
+	}
+
+	public Key getKey() {
+		return level2.getKey();
+	}
+
 }
