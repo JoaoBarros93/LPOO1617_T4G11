@@ -79,11 +79,9 @@ public class GamePanel extends JPanel implements KeyListener {
 		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		if (game.levelIsOn() == 1) {
-			g.drawImage(heroUnarmed, deltax * game.getHero().getX(), deltay * game.getHero().getY(), deltax, deltay,
-					null);
+			g.drawImage(heroUnarmed, deltax * game.getHero().getX(), deltay * game.getHero().getY(), deltax, deltay, null);
 		} else {
-			g.drawImage(heroArmed, deltax * game.getHero().getX(), deltay * game.getHero().getY(), deltax, deltay,
-					null);
+			g.drawImage(heroArmed, deltax * game.getHero().getX(), deltay * game.getHero().getY(), deltax, deltay, null);
 
 		}
 
@@ -95,11 +93,9 @@ public class GamePanel extends JPanel implements KeyListener {
 
 		for (int i = 0; i < game.getDoors().size(); i++)
 			if (game.getDoors().get(i).isOpen())
-				g.drawImage(stairs, deltax * game.getDoors().get(i).getX(), deltay * game.getDoors().get(i).getY(),
-						deltax, deltay, null);
+				g.drawImage(stairs, deltax * game.getDoors().get(i).getX(), deltay * game.getDoors().get(i).getY(),	deltax, deltay, null);
 			else
-				g.drawImage(doorClosed, deltax * game.getDoors().get(i).getX(), deltay * game.getDoors().get(i).getY(),
-						deltax, deltay, null);
+				g.drawImage(doorClosed, deltax * game.getDoors().get(i).getX(), deltay * game.getDoors().get(i).getY(),	deltax, deltay, null);
 
 	}
 
@@ -108,11 +104,9 @@ public class GamePanel extends JPanel implements KeyListener {
 		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		if (game.getGuard().isAsleep()) {
-			g.drawImage(guardAsleep, deltax * game.getGuard().getX(), deltay * game.getGuard().getY(), deltax, deltay,
-					null);
+			g.drawImage(guardAsleep, deltax * game.getGuard().getX(), deltay * game.getGuard().getY(), deltax, deltay, null);
 		} else {
-			g.drawImage(guardAwake, deltax * game.getGuard().getX(), deltay * game.getGuard().getY(), deltax, deltay,
-					null);
+			g.drawImage(guardAwake, deltax * game.getGuard().getX(), deltay * game.getGuard().getY(), deltax, deltay, null);
 
 		}
 
@@ -123,20 +117,16 @@ public class GamePanel extends JPanel implements KeyListener {
 		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		if (game.getLever().isActivated()) {
-			g.drawImage(leverActive, deltax * game.getLever().getX(), deltay * game.getLever().getY(), deltax, deltay,
-					null);
+			g.drawImage(leverActive, deltax * game.getLever().getX(), deltay * game.getLever().getY(), deltax, deltay, null);
 		} else {
-			g.drawImage(leverInactive, deltax * game.getLever().getX(), deltay * game.getLever().getY(), deltax, deltay,
-					null);
+			g.drawImage(leverInactive, deltax * game.getLever().getX(), deltay * game.getLever().getY(), deltax, deltay, null);
 
 		}
 		for (int i = 0; i < game.getLever().getDoors().size(); i++)
 			if (game.getLever().getDoors().get(i).isOpen())
-				g.drawImage(stairs, deltax * game.getLever().getDoors().get(i).getX(),
-						deltay * game.getLever().getDoors().get(i).getY(), deltax, deltay, null);
+				g.drawImage(stairs, deltax * game.getLever().getDoors().get(i).getX(), deltay * game.getLever().getDoors().get(i).getY(), deltax, deltay, null);
 			else
-				g.drawImage(doorClosed, deltax * game.getLever().getDoors().get(i).getX(),
-						deltay * game.getLever().getDoors().get(i).getY(), deltax, deltay, null);
+				g.drawImage(doorClosed, deltax * game.getLever().getDoors().get(i).getX(), deltay * game.getLever().getDoors().get(i).getY(), deltax, deltay, null);
 
 	}
 
@@ -145,15 +135,12 @@ public class GamePanel extends JPanel implements KeyListener {
 		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		for (int i = 0; i < game.getEnemies().size(); i++) {
-			g.drawImage(ogreCube, deltax * game.getEnemies().get(i).getCube().getX(),
-					deltay * game.getEnemies().get(i).getCube().getY(), deltax, deltay, null);
+			g.drawImage(ogreCube, deltax * game.getEnemies().get(i).getCube().getX(), deltay * game.getEnemies().get(i).getCube().getY(), deltax, deltay, null);
 
 			if (game.getEnemies().get(i).isStunned())
-				g.drawImage(ogreStunned, deltax * game.getEnemies().get(i).getX(),
-						deltay * game.getEnemies().get(i).getY(), deltax, deltay, null);
+				g.drawImage(ogreStunned, deltax * game.getEnemies().get(i).getX(), deltay * game.getEnemies().get(i).getY(), deltax, deltay, null);
 			else
-				g.drawImage(ogre, deltax * game.getEnemies().get(i).getX(), deltay * game.getEnemies().get(i).getY(),
-						deltax, deltay, null);
+				g.drawImage(ogre, deltax * game.getEnemies().get(i).getX(), deltay * game.getEnemies().get(i).getY(), deltax, deltay, null);
 
 		}
 
@@ -168,8 +155,7 @@ public class GamePanel extends JPanel implements KeyListener {
 
 				g.drawImage(keyHit, deltax * game.getKey().getX(), deltay * game.getKey().getY(), deltax, deltay, null);
 			} else {
-				g.drawImage(keyNotHit, deltax * game.getKey().getX(), deltay * game.getKey().getY(), deltax, deltay,
-						null);
+				g.drawImage(keyNotHit, deltax * game.getKey().getX(), deltay * game.getKey().getY(), deltax, deltay, null);
 
 			}
 		else
@@ -177,11 +163,9 @@ public class GamePanel extends JPanel implements KeyListener {
 
 		for (int i = 0; i < game.getKey().getDoors().size(); i++)
 			if (game.getKey().getDoors().get(i).isOpen())
-				g.drawImage(stairs, deltax * game.getKey().getDoors().get(i).getX(),
-						deltay * game.getKey().getDoors().get(i).getY(), deltax, deltay, null);
+				g.drawImage(stairs, deltax * game.getKey().getDoors().get(i).getX(), deltay * game.getKey().getDoors().get(i).getY(), deltax, deltay, null);
 			else
-				g.drawImage(doorClosed, deltax * game.getKey().getDoors().get(i).getX(),
-						deltay * game.getKey().getDoors().get(i).getY(), deltax, deltay, null);
+				g.drawImage(doorClosed, deltax * game.getKey().getDoors().get(i).getX(), deltay * game.getKey().getDoors().get(i).getY(), deltax, deltay, null);
 
 	}
 

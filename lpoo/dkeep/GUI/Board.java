@@ -9,12 +9,10 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JButton;
 
-
 import java.awt.FlowLayout;
 
 import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
-
 
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -34,7 +32,6 @@ public class Board extends JFrame {
 	JPanel Controls;
 	JButton btnDown;
 	JButton btnUp;
-
 
 	JButton btnLeft;
 	JButton btnRight;
@@ -83,8 +80,7 @@ public class Board extends JFrame {
 	}
 
 	private void createOptionsFrame() {
-		OptionsFrame optionsFrame= new OptionsFrame(this);
-		
+		OptionsFrame optionsFrame = new OptionsFrame(this);
 
 	}
 
@@ -128,11 +124,7 @@ public class Board extends JFrame {
 
 	}
 
-	public void initDirectionButtons() {
-		Controls = new JPanel();
-		mainPanel.add(Controls, BorderLayout.EAST);
-		Controls.setLayout(new MigLayout("", "[64.00px][64.00px][64px]", "[23px][][][23px][][][]"));
-
+	public void initButtonUp() {
 		btnUp = new JButton("   Up   ");
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -144,6 +136,9 @@ public class Board extends JFrame {
 		btnUp.setEnabled(false);
 		Controls.add(btnUp, "cell 1 1,alignx center,aligny top");
 
+	}
+
+	public void initButtonDown() {
 		btnDown = new JButton(" Down");
 		btnDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -154,6 +149,9 @@ public class Board extends JFrame {
 		btnDown.setEnabled(false);
 		Controls.add(btnDown, "cell 1 2,alignx center,aligny top");
 
+	}
+
+	public void initButtonLeft() {
 		btnLeft = new JButton("  Left ");
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -164,6 +162,9 @@ public class Board extends JFrame {
 		btnLeft.setEnabled(false);
 		Controls.add(btnLeft, "cell 0 2,alignx right,aligny top");
 
+	}
+
+	public void initButtonRight() {
 		btnRight = new JButton("Right ");
 		btnRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -173,6 +174,18 @@ public class Board extends JFrame {
 		});
 		btnRight.setEnabled(false);
 		Controls.add(btnRight, "cell 2 2,alignx left,aligny top");
+
+	}
+
+	public void initDirectionButtons() {
+		Controls = new JPanel();
+		mainPanel.add(Controls, BorderLayout.EAST);
+		Controls.setLayout(new MigLayout("", "[64.00px][64.00px][64px]", "[23px][][][23px][][][]"));
+		
+		initButtonRight();
+		initButtonLeft();
+		initButtonUp();
+		initButtonDown();
 
 	}
 
@@ -236,7 +249,7 @@ public class Board extends JFrame {
 		btnUp.setEnabled(true);
 		btnDown.setEnabled(true);
 	}
-	
+
 	public String getNumOfOgres() {
 		return NumOfOgres;
 	}

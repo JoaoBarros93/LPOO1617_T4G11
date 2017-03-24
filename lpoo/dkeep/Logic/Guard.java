@@ -52,9 +52,6 @@ public class Guard extends Character {
 			return;
 		}
 
-		if (guardPersona == 0)
-			return;
-
 	}
 
 	public void moveDruken() {
