@@ -15,6 +15,8 @@ import java.awt.FlowLayout;
 
 import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -24,7 +26,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 @SuppressWarnings("serial")
-public class Board extends JFrame {
+public class Board extends JFrame  {
 
 	private JPanel mainPanel;
 
@@ -132,6 +134,8 @@ public class Board extends JFrame {
 					}
 				};
 				options.addWindowListener(exitListener);
+				
+				
 
 			}
 		});
@@ -164,7 +168,7 @@ public class Board extends JFrame {
 	}
 
 	public void initGameArea() {
-		gamePanel = new GamePanel();
+		gamePanel = new GamePanel(this);
 		gamePanel.setPreferredSize(new Dimension(500, 500));
 		gamePanel.setBackground(Color.BLACK);
 		mainPanel.add(gamePanel, BorderLayout.CENTER);
@@ -287,5 +291,7 @@ public class Board extends JFrame {
 		btnUp.setEnabled(true);
 		btnDown.setEnabled(true);
 	}
+	
+
 
 }

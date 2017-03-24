@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -8,7 +10,9 @@ import javax.swing.JPanel;
 import Logic.Game;
 
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements KeyListener {
+	
+	private Board win;
 
 	private Image wall;
 	//private Image floor;
@@ -37,7 +41,9 @@ public class GamePanel extends JPanel {
 
 	private boolean drawMap = false;
 	
-	public GamePanel() {
+	public GamePanel(Board win) {
+		this.win=win;
+		addKeyListener(this);
 		backGround =  new ImageIcon("dkeep/Images/BackGround.png").getImage();
 	}
 
@@ -48,6 +54,9 @@ public class GamePanel extends JPanel {
 			displayGame(g);
 		}
 		else g.drawImage(backGround, 0, 0, getWidth(), getHeight(), null);
+	
+		
+		requestFocusInWindow();
 		
 
 	}
@@ -266,6 +275,39 @@ public class GamePanel extends JPanel {
 		
 
 	}
+	
+	public void keyPressed(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (!game.isGameOn())
+			return;
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_LEFT:
+			if (!heroMove('a'))
+				win.gameOver();
+			break;
+		case KeyEvent.VK_RIGHT:
+			if (!heroMove('d'))
+				win.gameOver();
+			break;
+		case KeyEvent.VK_UP:
+			if (!heroMove('w'))
+				win.gameOver();
+			break;
+		case KeyEvent.VK_DOWN:
+			if (!heroMove('s'))
+				win.gameOver();
+			break;
+		}
+	}
+
+	public void keyTyped(KeyEvent e) {
+	}
 
 	
+
 }
+

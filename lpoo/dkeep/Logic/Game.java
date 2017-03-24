@@ -5,6 +5,7 @@ import java.util.Vector;
 public class Game {
 	private DungeonLevel level1;
 	private OgreLevel level2;
+	private boolean gameOn = true;
 	
 
 	public Game(int guardPersona, int numOgres) {
@@ -27,15 +28,23 @@ public class Game {
 		
 	
 	public boolean updateGame(char direction) {
-		if(!level1.isBeaten())
-			return level1.update(direction);
-		else return level2.update(direction);			
-		
+		if (!level1.isBeaten()) {
+			gameOn = level1.update(direction);
+			return gameOn;
+		}
+
+		else {
+			gameOn = level2.update(direction);
+			return gameOn;
+		}
+
+	}
 	
+	
+	public boolean isGameOn() {
+		return gameOn;
 	}
 
-	
-	
 	public String getMap(){
 		if(!level1.isBeaten())
 			return level1.toString();
