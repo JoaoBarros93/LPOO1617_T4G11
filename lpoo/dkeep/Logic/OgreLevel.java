@@ -233,21 +233,21 @@ public class OgreLevel implements IGameLogicLevel{
 	// 1 cant move
 	// 2 opens do
 
-	public boolean heroCanMoveTo(int x, int y) {
-		if (map[y][x]==wallChar) 				
+	public boolean heroCanMoveTo(int x_pos, int y_pos) {
+		if (map[y_pos][x_pos]==wallChar) 				
 				return false;
 		
 		for (Door i : otherDoors)
-			if (i.positionIs(x, y) && !i.isOpen())
+			if (i.positionIs(x_pos, y_pos) && !i.isOpen())
 				return false;
 
 		for (Door i : key.getDoors())
-			if (i.positionIs(x, y) && !i.isOpen())
+			if (i.positionIs(x_pos, y_pos) && !i.isOpen())
 				return false;
 		
 		//hero cant move to Ogre position
 		for (Ogre i : enemies)
-			if (i.positionIs(x, y))
+			if (i.positionIs(x_pos, y_pos))
 				return false;
 		
 			return true;

@@ -37,8 +37,8 @@ public abstract class Object {
 	}
 	
 	public boolean isNextTo(Character character) {
-		if (((Math.abs(getX() - character.getX()) <= 1) && (Math.abs(getY() - character.getY()) <= 0)) ||
-				((Math.abs(getX() - character.getX()) <= 0) && (Math.abs(getY() - character.getY()) <= 1)))
+		if (((Math.abs(character.getX()-getX()) <= 1) && (Math.abs(getY() - character.getY()) <= 0)) ||
+				((Math.abs(getX() - character.getX()) <= 0) && (Math.abs(character.getY()-getY()) <= 1)))
 			return true;
 		else
 			return false;

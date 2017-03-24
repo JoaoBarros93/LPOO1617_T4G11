@@ -105,32 +105,32 @@ public class DungeonLevel implements IGameLogicLevel {
 	public String toString() {
 		String ret = "\n\n\n";
 
-		for (int y = 0; y < map.length; y++) {
-			for (int x = 0; x < map[y].length; x++) {
+		for (int y_pos = 0; y_pos < map.length; y_pos++) {
+			for (int x_pos = 0; x_pos < map[y_pos].length; x_pos++) {
 				boolean wasAdded = false;
-				if (hero.positionIs(x, y)) {
+				if (hero.positionIs(x_pos, y_pos)) {
 					ret += hero.toString();
 					wasAdded = true;
-				} else if (guard.positionIs(x, y)) {
+				} else if (guard.positionIs(x_pos, y_pos)) {
 					ret += guard.toString();
 					wasAdded = true;
-				} else if (lever.positionIs(x, y)){
+				} else if (lever.positionIs(x_pos, y_pos)){
 					ret += lever.toString();
 					wasAdded = true;					
 				}
 				for (Door i : lever.getDoors())
-					if (i.positionIs(x, y)) {
+					if (i.positionIs(x_pos, y_pos)) {
 						ret += i.toString();
 						wasAdded = true;
 					}
 
 				for (Door i : otherDoors)
-					if (i.positionIs(x, y)) {
+					if (i.positionIs(x_pos, y_pos)) {
 						ret += i.toString();
 						wasAdded = true;
 						}
 				if (!wasAdded)
-					ret += map[y][x];
+					ret += map[y_pos][x_pos];
 				ret += " ";
 			}
 			ret += " \n";
@@ -174,19 +174,19 @@ public class DungeonLevel implements IGameLogicLevel {
 	}
 
 	
-	public boolean heroCanMoveTo(int x, int y) {
-		if (map[y][x]==wallChar) 				
+	public boolean heroCanMoveTo(int x_pos, int y_pos) {
+		if (map[y_pos][x_pos]==wallChar) 				
 				return false;
 
 		for (Door i : otherDoors)
-			if (i.positionIs(x, y) && !i.isOpen())
+			if (i.positionIs(x_pos, y_pos) && !i.isOpen())
 				return false;
 
 		for (Door i : lever.getDoors())
-			if (i.positionIs(x, y) && !i.isOpen())
+			if (i.positionIs(x_pos, y_pos) && !i.isOpen())
 				return false;
 		
-		if (guard.positionIs(x, y))
+		if (guard.positionIs(x_pos, y_pos))
 			return false;
 
 		return true;

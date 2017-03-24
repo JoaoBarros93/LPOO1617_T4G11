@@ -5,18 +5,11 @@ public abstract class Character {
 	protected int pos_x;
 	protected int pos_y;
 	
-	public Character(int pos_x, int pos_y){
-		this.pos_x=pos_x;
-		this.pos_y=pos_y;
+	public Character(int x, int y){
+		this.pos_x=x;
+		this.pos_y=y;
 	}
 
-	public int getX() {
-		return pos_x;
-	}
-	
-	public int getY() {
-		return pos_y;
-	}
 
 	public void setPosX(int pos_x) {
 		this.pos_x = pos_x;
@@ -56,4 +49,13 @@ public abstract class Character {
 		else
 			return false;
 	}
+	
+	public int getX() {
+		return pos_x;
+	}
+	
+	public int getY() {
+		return pos_y;
+	}
+
 }

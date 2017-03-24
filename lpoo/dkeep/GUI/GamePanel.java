@@ -178,13 +178,13 @@ public class GamePanel extends JPanel implements KeyListener {
 		else
 			return;
 		
-		for (int i = 0; i < game.getLever().getDoors().size(); i++)
-			if (game.getLever().getDoors().get(i).isOpen())
-				g.drawImage(stairs, deltax * game.getLever().getDoors().get(i).getX(),
-						deltay * game.getLever().getDoors().get(i).getY(), deltax, deltay, null);
+		for (int i = 0; i < game.getKey().getDoors().size(); i++)
+			if (game.getKey().getDoors().get(i).isOpen())
+				g.drawImage(stairs, deltax * game.getKey().getDoors().get(i).getX(),
+						deltay * game.getKey().getDoors().get(i).getY(), deltax, deltay, null);
 			else
-				g.drawImage(doorClosed, deltax * game.getLever().getDoors().get(i).getX(),
-						deltay * game.getLever().getDoors().get(i).getY(), deltax, deltay, null);
+				g.drawImage(doorClosed, deltax * game.getKey().getDoors().get(i).getX(),
+						deltay * game.getKey().getDoors().get(i).getY(), deltax, deltay, null);
 
 	}
 	

@@ -92,7 +92,7 @@ public class Guard extends Character {
 
 	public void moveSuspicious() {
 		Random rand = new Random();
-		int nume;
+		int nume; 
 		if (isMovingFront)
 			nume = rand.nextInt(7);
 		else
@@ -110,10 +110,10 @@ public class Guard extends Character {
 
 			isMovingFront = !isMovingFront;
 		}
-		if (isMovingFront)
-			movefront();
-		else
+		if (!isMovingFront)
 			moveback();
+		else
+			movefront();
 
 	}
 	
