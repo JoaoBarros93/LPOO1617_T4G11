@@ -11,11 +11,11 @@ import Logic.Game;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements KeyListener {
-	
+
 	private Board win;
 
 	private Image wall;
-	//private Image floor;
+	// private Image floor;
 	private Image stairs;
 	private Image doorClosed;
 	private Image keyHit;
@@ -37,14 +37,12 @@ public class GamePanel extends JPanel implements KeyListener {
 		return game;
 	}
 
-
-
 	private boolean drawMap = false;
-	
+
 	public GamePanel(Board win) {
-		this.win=win;
+		this.win = win;
 		addKeyListener(this);
-		backGround =  new ImageIcon("dkeep/Images/BackGround.png").getImage();
+		backGround = new ImageIcon("dkeep/Images/BackGround.png").getImage();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -52,47 +50,47 @@ public class GamePanel extends JPanel implements KeyListener {
 
 		if (drawMap) {
 			displayGame(g);
-		}
-		else g.drawImage(backGround, 0, 0, getWidth(), getHeight(), null);
-	
-		
+		} else
+			g.drawImage(backGround, 0, 0, getWidth(), getHeight(), null);
+
 		requestFocusInWindow();
-		
 
 	}
-	
+
 	public void displayGame(Graphics g) {
 		displayMap(g);
-				
-		if (game.levelIsOn() == 1) {			
-			displayGuard(g);			
-			displayLever(g);			
-		} else {		
-			displayOgres(g);			
+
+		if (game.levelIsOn() == 1) {
+			displayGuard(g);
+			displayLever(g);
+		} else {
+			displayOgres(g);
 			displayKey(g);
 
 		}
-		
+
 		displayDoors(g);
 		displayHero(g);
 	}
 
 	void displayHero(Graphics g) {
 
-		int deltay = getHeight() /  game.getMapArray().length;
+		int deltay = getHeight() / game.getMapArray().length;
 		int deltax = getWidth() / game.getMapArray()[0].length;
-		
-		if (game.levelIsOn() == 1) {			
-			g.drawImage(heroUnarmed, deltax * game.getHero().getX(), deltay * game.getHero().getY(), deltax, deltay, null);			
-		} else {		
-			g.drawImage(heroArmed, deltax * game.getHero().getX(), deltay * game.getHero().getY(), deltax, deltay, null);
+
+		if (game.levelIsOn() == 1) {
+			g.drawImage(heroUnarmed, deltax * game.getHero().getX(), deltay * game.getHero().getY(), deltax, deltay,
+					null);
+		} else {
+			g.drawImage(heroArmed, deltax * game.getHero().getX(), deltay * game.getHero().getY(), deltax, deltay,
+					null);
 
 		}
 
 	}
 
 	void displayDoors(Graphics g) {
-		int deltay = getHeight() /  game.getMapArray().length;
+		int deltay = getHeight() / game.getMapArray().length;
 		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		for (int i = 0; i < game.getDoors().size(); i++)
@@ -102,25 +100,26 @@ public class GamePanel extends JPanel implements KeyListener {
 			else
 				g.drawImage(doorClosed, deltax * game.getDoors().get(i).getX(), deltay * game.getDoors().get(i).getY(),
 						deltax, deltay, null);
-			
+
 	}
-	
 
 	void displayGuard(Graphics g) {
-		int deltay = getHeight() /  game.getMapArray().length;
+		int deltay = getHeight() / game.getMapArray().length;
 		int deltax = getWidth() / game.getMapArray()[0].length;
-		
-		if (game.getGuard().isAsleep()) {			
-			g.drawImage(guardAsleep, deltax * game.getGuard().getX(), deltay * game.getGuard().getY(), deltax, deltay, null);			
-		} else {		
-			g.drawImage(guardAwake, deltax * game.getGuard().getX(), deltay * game.getGuard().getY(), deltax, deltay, null);
+
+		if (game.getGuard().isAsleep()) {
+			g.drawImage(guardAsleep, deltax * game.getGuard().getX(), deltay * game.getGuard().getY(), deltax, deltay,
+					null);
+		} else {
+			g.drawImage(guardAwake, deltax * game.getGuard().getX(), deltay * game.getGuard().getY(), deltax, deltay,
+					null);
 
 		}
 
 	}
 
 	void displayLever(Graphics g) {
-		int deltay = getHeight() /  game.getMapArray().length;
+		int deltay = getHeight() / game.getMapArray().length;
 		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		if (game.getLever().isActivated()) {
@@ -142,13 +141,13 @@ public class GamePanel extends JPanel implements KeyListener {
 	}
 
 	void displayOgres(Graphics g) {
-		int deltay = getHeight() /  game.getMapArray().length;
+		int deltay = getHeight() / game.getMapArray().length;
 		int deltax = getWidth() / game.getMapArray()[0].length;
-		
+
 		for (int i = 0; i < game.getEnemies().size(); i++) {
 			g.drawImage(ogreCube, deltax * game.getEnemies().get(i).getCube().getX(),
 					deltay * game.getEnemies().get(i).getCube().getY(), deltax, deltay, null);
-			
+
 			if (game.getEnemies().get(i).isStunned())
 				g.drawImage(ogreStunned, deltax * game.getEnemies().get(i).getX(),
 						deltay * game.getEnemies().get(i).getY(), deltax, deltay, null);
@@ -156,14 +155,12 @@ public class GamePanel extends JPanel implements KeyListener {
 				g.drawImage(ogre, deltax * game.getEnemies().get(i).getX(), deltay * game.getEnemies().get(i).getY(),
 						deltax, deltay, null);
 
-			
-
 		}
 
 	}
 
 	void displayKey(Graphics g) {
-		int deltay = getHeight() /  game.getMapArray().length;
+		int deltay = getHeight() / game.getMapArray().length;
 		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		if (!game.getHero().hasKey())
@@ -177,7 +174,7 @@ public class GamePanel extends JPanel implements KeyListener {
 			}
 		else
 			return;
-		
+
 		for (int i = 0; i < game.getKey().getDoors().size(); i++)
 			if (game.getKey().getDoors().get(i).isOpen())
 				g.drawImage(stairs, deltax * game.getKey().getDoors().get(i).getX(),
@@ -187,7 +184,6 @@ public class GamePanel extends JPanel implements KeyListener {
 						deltay * game.getKey().getDoors().get(i).getY(), deltax, deltay, null);
 
 	}
-	
 
 	public void displayMap(Graphics g) {
 
@@ -208,74 +204,55 @@ public class GamePanel extends JPanel implements KeyListener {
 	public boolean heroMove(char dir) {
 		boolean continueGame = game.updateGame(dir);
 		repaint();
-		
+
 		return continueGame;
-	 
+
 	}
-	
+
 	void startGame(String guardPersonality, int numOgres) {
-		loadImages();
-		
+		loadImagesLevel1();
+		loadImagesLevel2();
 
 		game = new Game(guardPersonality, numOgres);
-		drawMap=true;
+		drawMap = true;
 		repaint();
 	}
-	
-	
 
-	private void loadImages() {
-		ImageIcon ii;
+	private void loadImagesLevel1() {
+		wall = new ImageIcon("dkeep/Images/Wall.png").getImage();
 
-		ii = new ImageIcon("dkeep/Images/Wall.png");
-		wall = ii.getImage();
+		backGround = new ImageIcon("dkeep/Images/BackGround.png").getImage();
 
-		ii = new ImageIcon("dkeep/Images/BackGround.png");
-		backGround = ii.getImage();
+		stairs = new ImageIcon("dkeep/Images/Stairs.png").getImage();
 
-		ii = new ImageIcon("dkeep/Images/Stairs.png");
-		stairs = ii.getImage();
+		doorClosed = new ImageIcon("dkeep/Images/DoorClosed.png").getImage();
 
-		ii = new ImageIcon("dkeep/Images/DoorClosed.png");
-		doorClosed = ii.getImage();
+		leverActive = new ImageIcon("dkeep/Images/LeverActive.png").getImage();
 
-		ii = new ImageIcon("dkeep/Images/KeyHit.png");
-		keyHit = ii.getImage();
-		
-		ii = new ImageIcon("dkeep/Images/KeyNotHit.png");
-		keyNotHit = ii.getImage();
+		leverInactive = new ImageIcon("dkeep/Images/LeverInactive.png").getImage();
 
-		ii = new ImageIcon("dkeep/Images/LeverActive.png");
-		leverActive = ii.getImage();
-		
-		ii = new ImageIcon("dkeep/Images/LeverInactive.png");
-		leverInactive = ii.getImage();
+		heroUnarmed = new ImageIcon("dkeep/Images/HeroUnarmed.png").getImage();
 
-		ii = new ImageIcon("dkeep/Images/HeroUnarmed.png");
-		heroUnarmed = ii.getImage();
-		
-		ii = new ImageIcon("dkeep/Images/HeroArmed.png");
-		heroArmed = ii.getImage();
+		guardAsleep = new ImageIcon("dkeep/Images/GuardAsleep.png").getImage();
 
-		ii = new ImageIcon("dkeep/Images/GuardAsleep.png");
-		guardAsleep = ii.getImage();
-		
-		ii = new ImageIcon("dkeep/Images/GuardAwake.png");
-		guardAwake = ii.getImage();
-
-		ii = new ImageIcon("dkeep/Images/Ogre.png");
-		ogre = ii.getImage();
-		
-		ii = new ImageIcon("dkeep/Images/OgreCube.png");
-		ogreCube = ii.getImage();
-		
-		ii = new ImageIcon("dkeep/Images/OgreStunned.png");
-		ogreStunned = ii.getImage();
-		
-		
+		guardAwake = new ImageIcon("dkeep/Images/GuardAwake.png").getImage();
 
 	}
-	
+
+	private void loadImagesLevel2() {
+		keyHit = new ImageIcon("dkeep/Images/KeyHit.png").getImage();
+
+		keyNotHit = new ImageIcon("dkeep/Images/KeyNotHit.png").getImage();
+
+		heroArmed = new ImageIcon("dkeep/Images/HeroArmed.png").getImage();
+
+		ogre = new ImageIcon("dkeep/Images/Ogre.png").getImage();
+
+		ogreCube = new ImageIcon("dkeep/Images/OgreCube.png").getImage();
+
+		ogreStunned = new ImageIcon("dkeep/Images/OgreStunned.png").getImage();
+	}
+
 	public void keyPressed(KeyEvent e) {
 
 	}
@@ -307,7 +284,4 @@ public class GamePanel extends JPanel implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 	}
 
-	
-
 }
-

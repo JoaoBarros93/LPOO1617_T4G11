@@ -6,23 +6,23 @@ public class Ogre extends Character {
 	private boolean isOnKey = false;
 	private int isStunned = 0;
 	private Cube cube;
-	private boolean canMove=true;
+	private boolean canMove = true;
 
-	public Ogre(int pos_x, int pos_y) {	
+	public Ogre(int pos_x, int pos_y) {
 		super(pos_x, pos_y);
-		cube=new Cube(pos_x, pos_y);
+		cube = new Cube(pos_x, pos_y);
 	}
-	
+
 	public Cube getCube() {
 		return cube;
 	}
 
-	public void gotStunned(){
-		isStunned=2;
+	public void gotStunned() {
+		isStunned = 2;
 		cube.setPosXY(pos_x, pos_y);
 	}
-	
-	public boolean justgotStunned(){
+
+	public boolean justgotStunned() {
 		if (isStunned == 2)
 			return true;
 		else
@@ -30,10 +30,10 @@ public class Ogre extends Character {
 	}
 
 	public void move(OgreLevel ogreLevel) {
-		if(!canMove)
+		if (!canMove)
 			return;
 
-		if(isStunned!=0){
+		if (isStunned != 0) {
 			isStunned--;
 			atack(ogreLevel);
 			return;
@@ -93,7 +93,6 @@ public class Ogre extends Character {
 	public void atack(OgreLevel ogreLevel) {
 		// gera num de 0 a 4
 		int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
-		
 
 		boolean canAtack = false;
 
@@ -138,38 +137,36 @@ public class Ogre extends Character {
 
 		}
 
+	}
 
-		
+	public void stepedOnKey() {
+		isOnKey = true;
+
 	}
-	
-	public void stepedOnKey(){
-		isOnKey = true;	
-		
-	}
-	
-	public boolean isStunned(){
+
+	public boolean isStunned() {
 		if (isStunned == 0)
 			return false;
 		else
 			return true;
-		
+
 	}
-	
-	public boolean isOnKey(){
-		return isOnKey;	
-		
+
+	public boolean isOnKey() {
+		return isOnKey;
+
 	}
-	
-	public void stopstepedOnKey(){
-		isOnKey = false;	
-		
+
+	public void stopstepedOnKey() {
+		isOnKey = false;
+
 	}
-	
+
 	@Override
 	public String toString() {
-		if(isOnKey)
+		if (isOnKey)
 			return "$";
-		else if(isStunned())
+		else if (isStunned())
 			return "8";
 		return "0";
 	}

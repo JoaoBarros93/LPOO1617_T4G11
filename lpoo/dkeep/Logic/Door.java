@@ -2,36 +2,31 @@ package Logic;
 
 public class Door extends Object {
 
-	private boolean isOpen=false;
-	
+	private boolean isOpen = false;
 
-	
 	public Door(int pos_x, int pos_y) {
 		super(pos_x, pos_y);
 	}
 
-	
-	
-	public void openDoor(){
-		isOpen=true;
+	public void openDoor() {
+		isOpen = true;
 	}
-	
-	public boolean isOpen(){
+
+	public boolean isOpen() {
 		return isOpen;
 	}
-	
+
 	@Override
 	public String toString() {
-		if(isOpen)
+		if (isOpen)
 			return "S";
-		else return "I";
+		else
+			return "I";
 	}
-	
+
 	public String getType() {
 		return "Door";
 	}
-
-
 
 	public boolean canBeOpenWith(Hero hero, char direction) {
 
@@ -59,7 +54,7 @@ public class Door extends Object {
 				return true;
 			}
 			break;
-			
+
 		}
 		return false;
 

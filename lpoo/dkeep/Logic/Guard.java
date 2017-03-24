@@ -3,40 +3,37 @@ package Logic;
 import java.util.Random;
 
 public class Guard extends Character {
-	
 
-	private char moves[] = { 'a', 's', 's', 's', 's', 'a', 'a', 'a', 'a', 'a', 'a', 's', 
-							'd', 'd', 'd', 'd', 'd', 'd', 'd', 'w', 'w', 'w', 'w', 'w' };
-	
+	private char moves[] = { 'a', 's', 's', 's', 's', 'a', 'a', 'a', 'a', 'a', 'a', 's', 'd', 'd', 'd', 'd', 'd', 'd',
+			'd', 'w', 'w', 'w', 'w', 'w' };
+
 	private int nextMove = 0;
-	private boolean isMovingFront= true;
-	private int isAsleep= 0;
-	
-	//0-not moving
-	//1-rookie
-	//2-Druken
-	//3-Suspicious
+	private boolean isMovingFront = true;
+	private int isAsleep = 0;
+
+	// 0-not moving
+	// 1-rookie
+	// 2-Druken
+	// 3-Suspicious
 	private int guardPersona;
 
 	public Guard(int pos_x, int pos_y, int guardPersona) {
 		super(pos_x, pos_y);
-		this.guardPersona= guardPersona;
+		this.guardPersona = guardPersona;
 	}
-	
-	public boolean isAsleep(){
-		return (isAsleep!=0);
-		
+
+	public boolean isAsleep() {
+		return (isAsleep != 0);
+
 	}
-	
-	
 
 	@Override
 	public String toString() {
-		if(isAsleep())
+		if (isAsleep())
 			return "g";
 		return "G";
 	}
-	
+
 	public void move() {
 
 		switch (guardPersona) {
@@ -59,7 +56,7 @@ public class Guard extends Character {
 			return;
 
 	}
-	
+
 	public void moveDruken() {
 		if (isAsleep()) {
 			isAsleep--;
@@ -92,7 +89,7 @@ public class Guard extends Character {
 
 	public void moveSuspicious() {
 		Random rand = new Random();
-		int nume; 
+		int nume;
 		if (isMovingFront)
 			nume = rand.nextInt(7);
 		else
@@ -116,7 +113,7 @@ public class Guard extends Character {
 			movefront();
 
 	}
-	
+
 	public void movefront() {
 
 		char dir = moves[nextMove];
@@ -129,7 +126,7 @@ public class Guard extends Character {
 		case 'w':
 			moveUp();
 			break;
-			
+
 		case 's':
 			moveDown();
 			break;
@@ -143,7 +140,7 @@ public class Guard extends Character {
 			break;
 		}
 	}
-	
+
 	public void moveback() {
 
 		char dir = moves[nextMove];
@@ -156,7 +153,7 @@ public class Guard extends Character {
 		case 'w':
 			moveDown();
 			break;
-			
+
 		case 's':
 			moveUp();
 			break;
@@ -170,6 +167,5 @@ public class Guard extends Character {
 			break;
 		}
 	}
-
 
 }

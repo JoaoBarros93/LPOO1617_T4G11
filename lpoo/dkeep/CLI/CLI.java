@@ -8,8 +8,7 @@ public class CLI {
 
 	private static Game game;
 
-
-	public static void defineGameSettings(Scanner in) {		
+	public static void defineGameSettings(Scanner in) {
 		int guardPersona;
 		int numOgres;
 
@@ -27,16 +26,15 @@ public class CLI {
 			System.out.print("> ");
 			numOgres = in.nextInt();
 		} while (numOgres < 1 || numOgres > 5);
-		
-		game = new Game(guardPersona,numOgres);
+
+		game = new Game(guardPersona, numOgres);
 
 	}
-
 
 	public static void startGame(Scanner in) {
 		char dir;
 		boolean playGame = true;
-		
+
 		drawMap();
 
 		while (playGame) {
@@ -53,11 +51,9 @@ public class CLI {
 
 	}
 
-	
 	public static char getHeroDirection(Scanner in) {
 		String dir;
 
-	
 		do {
 			System.out.print("What direction do you want your character to move(w/s/a/d)? ");
 			System.out.print("> ");
@@ -68,7 +64,7 @@ public class CLI {
 	}
 
 	public static void main(String[] args) {
-		
+
 		System.out.println("Welcome to the Dungeon Keep");
 		System.out.println("What do you want to do?");
 		System.out.println("1. Play Game");
@@ -103,10 +99,9 @@ public class CLI {
 		in.close();
 	}
 
-
 	public static void GameResults() {
-		int res=game.results();
-		
+		int res = game.results();
+
 		switch (res) {
 		case 0:
 			System.out.println("You Won the Game!");
@@ -117,9 +112,9 @@ public class CLI {
 		case 2:
 			System.out.println("Game Over! A Ogre has killed you!");
 			break;
-	
-	}
-		
+
+		}
+
 	}
 
 }

@@ -1,15 +1,15 @@
 package Logic;
 
-public class Hero extends Character{
-	
-	private boolean isAlive=true;
-	private boolean hasKey=false;
-	private boolean isArmed=false;
+public class Hero extends Character {
+
+	private boolean isAlive = true;
+	private boolean hasKey = false;
+	private boolean isArmed = false;
 
 	public Hero(int pos_x, int pos_y) {
 		super(pos_x, pos_y);
 	}
-	
+
 	public void wasKilled() {
 		this.isAlive = false;
 	}
@@ -26,22 +26,20 @@ public class Hero extends Character{
 	public boolean isAlive() {
 		return isAlive;
 	}
-	
-	public boolean hasKey(){
-		return hasKey;	
-	}
-	
-	public void pickKey(){
-		hasKey=true;
-		 
-	}
-	
-	public void pickClub(){
-		isArmed=true;		 
+
+	public boolean hasKey() {
+		return hasKey;
 	}
 
+	public void pickKey() {
+		hasKey = true;
 
-	
+	}
+
+	public void pickClub() {
+		isArmed = true;
+	}
+
 	public boolean move(char dir, IGameLogicLevel level) {
 		boolean validMove = false;
 
@@ -80,8 +78,8 @@ public class Hero extends Character{
 	}
 
 	public boolean isNextTo(Character character) {
-		if (((Math.abs(getX() - character.getX()) <= 1) && (Math.abs(getY() - character.getY()) <= 0)) ||
-				((Math.abs(getX() - character.getX()) <= 0) && (Math.abs(getY() - character.getY()) <= 1)))
+		if (((Math.abs(getX() - character.getX()) <= 1) && (Math.abs(getY() - character.getY()) <= 0))
+				|| ((Math.abs(getX() - character.getX()) <= 0) && (Math.abs(getY() - character.getY()) <= 1)))
 			return true;
 		else
 			return false;

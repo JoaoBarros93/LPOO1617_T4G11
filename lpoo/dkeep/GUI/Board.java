@@ -1,32 +1,28 @@
 package GUI;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 import javax.swing.border.EmptyBorder;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+
 
 import java.awt.FlowLayout;
 
 import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+
+
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Dimension;
 
 @SuppressWarnings("serial")
-public class Board extends JFrame  {
+public class Board extends JFrame {
 
 	private JPanel mainPanel;
 
@@ -38,6 +34,8 @@ public class Board extends JFrame  {
 	JPanel Controls;
 	JButton btnDown;
 	JButton btnUp;
+
+
 	JButton btnLeft;
 	JButton btnRight;
 
@@ -85,60 +83,8 @@ public class Board extends JFrame  {
 	}
 
 	private void createOptionsFrame() {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				JFrame options = new JFrame();
-				// options.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				options.setBounds(100, 100, 450, 300);
-				JPanel contentPane = new JPanel();
-				contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-				options.setContentPane(contentPane);
-				contentPane.setLayout(null);
-
-				JTextField tfNumOgres = new JTextField();
-				tfNumOgres.setText(NumOfOgres);
-				tfNumOgres.setBounds(144, 70, 86, 20);
-				contentPane.add(tfNumOgres);
-				tfNumOgres.setColumns(10);
-
-				JLabel lblNumberOfOgres = new JLabel("Number of Ogres");
-				lblNumberOfOgres.setBounds(28, 73, 106, 14);
-				contentPane.add(lblNumberOfOgres);
-
-				JLabel lblGuardPersonality = new JLabel("Guard Personality");
-				lblGuardPersonality.setBounds(28, 112, 106, 14);
-				contentPane.add(lblGuardPersonality);
-
-				JComboBox<String> fldGuardPersona = new JComboBox<String>();
-				fldGuardPersona.setBounds(144, 109, 86, 20);
-				contentPane.add(fldGuardPersona);
-				fldGuardPersona.addItem("Rookie");
-				fldGuardPersona.addItem("Druken");
-				fldGuardPersona.addItem("Suspicious");
-				if (GuardPersonality == "Rookie")
-					fldGuardPersona.setSelectedIndex(0);
-				else if (GuardPersonality == "Druken")
-					fldGuardPersona.setSelectedIndex(1);
-				else if (GuardPersonality == "Suspicious")
-					fldGuardPersona.setSelectedIndex(2);
-				options.setVisible(true);
-
-				WindowListener exitListener = new WindowAdapter() {
-
-					@Override
-					public void windowClosing(WindowEvent e) {
-						GuardPersonality = fldGuardPersona.getSelectedItem().toString();
-						NumOfOgres = tfNumOgres.getText();
-
-					}
-				};
-				options.addWindowListener(exitListener);
-				
-				
-
-			}
-		});
+		OptionsFrame optionsFrame= new OptionsFrame(this);
+		
 
 	}
 
@@ -235,7 +181,6 @@ public class Board extends JFrame  {
 		btnNewGame = new JButton("New Game");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 
 				if (!NumOfOgres.matches("[0-9]+") || NumOfOgres.length() != 1) {
 					lblGameStatus.setText("Invalid number of Ogres.");
@@ -292,6 +237,20 @@ public class Board extends JFrame  {
 		btnDown.setEnabled(true);
 	}
 	
+	public String getNumOfOgres() {
+		return NumOfOgres;
+	}
 
+	public void setNumOfOgres(String numOfOgres) {
+		NumOfOgres = numOfOgres;
+	}
+
+	public String getGuardPersonality() {
+		return GuardPersonality;
+	}
+
+	public void setGuardPersonality(String guardPersonality) {
+		GuardPersonality = guardPersonality;
+	}
 
 }

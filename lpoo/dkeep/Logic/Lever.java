@@ -3,32 +3,30 @@ package Logic;
 import java.util.Vector;
 
 public class Lever extends Object {
-	
-	
 
-	private boolean isActivated=false;
+	private boolean isActivated = false;
 	private Vector<Door> doors;
-	
+
 	public Lever(int pos_x, int pos_y) {
 		super(pos_x, pos_y);
-		doors= new Vector<Door>();
+		doors = new Vector<Door>();
 	}
-	
-	public void activateLever(){
-		isActivated=true;
-		for(Door i: doors)
+
+	public void activateLever() {
+		isActivated = true;
+		for (Door i : doors)
 			i.openDoor();
 	}
-	
+
 	public Vector<Door> getDoors() {
 		return doors;
 	}
 
-	public boolean isActivated(){
+	public boolean isActivated() {
 		return isActivated;
 	}
-	
-	public void addDoor(Door door){
+
+	public void addDoor(Door door) {
 		doors.add(door);
 	}
 
@@ -36,10 +34,9 @@ public class Lever extends Object {
 	public String toString() {
 		return "k";
 	}
-	
+
 	public String getType() {
 		return "Lever";
 	}
-
 
 }
