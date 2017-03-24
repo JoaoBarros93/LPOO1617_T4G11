@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import Logic.Game;
-import Logic.Hero;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
@@ -71,8 +70,8 @@ public class GamePanel extends JPanel {
 
 	void displayHero(Graphics g) {
 
-		int deltax = getHeight() /  game.getMapArray().length;
-		int deltay = getWidth() / game.getMapArray()[0].length;
+		int deltay = getHeight() /  game.getMapArray().length;
+		int deltax = getWidth() / game.getMapArray()[0].length;
 		
 		if (game.levelIsOn() == 1) {			
 			g.drawImage(heroUnarmed, deltax * game.getHero().getX(), deltay * game.getHero().getY(), deltax, deltay, null);			
@@ -84,8 +83,8 @@ public class GamePanel extends JPanel {
 	}
 
 	void displayDoors(Graphics g) {
-		int deltax = getHeight() / game.getMapArray().length;
-		int deltay = getWidth() / game.getMapArray()[0].length;
+		int deltay = getHeight() /  game.getMapArray().length;
+		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		for (int i = 0; i < game.getDoors().size(); i++)
 			if (game.getDoors().get(i).isOpen())
@@ -99,8 +98,8 @@ public class GamePanel extends JPanel {
 	
 
 	void displayGuard(Graphics g) {
-		int deltax = getHeight() /  game.getMapArray().length;
-		int deltay = getWidth() / game.getMapArray()[0].length;
+		int deltay = getHeight() /  game.getMapArray().length;
+		int deltax = getWidth() / game.getMapArray()[0].length;
 		
 		if (game.getGuard().isAsleep()) {			
 			g.drawImage(guardAsleep, deltax * game.getGuard().getX(), deltay * game.getGuard().getY(), deltax, deltay, null);			
@@ -112,8 +111,8 @@ public class GamePanel extends JPanel {
 	}
 
 	void displayLever(Graphics g) {
-		int deltax = getHeight() / game.getMapArray().length;
-		int deltay = getWidth() / game.getMapArray()[0].length;
+		int deltay = getHeight() /  game.getMapArray().length;
+		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		if (game.getLever().isActivated()) {
 			g.drawImage(leverActive, deltax * game.getLever().getX(), deltay * game.getLever().getY(), deltax, deltay,
@@ -134,9 +133,9 @@ public class GamePanel extends JPanel {
 	}
 
 	void displayOgres(Graphics g) {
-		int deltax = getHeight() / game.getMapArray().length;
-		int deltay = getWidth() / game.getMapArray()[0].length;
-
+		int deltay = getHeight() /  game.getMapArray().length;
+		int deltax = getWidth() / game.getMapArray()[0].length;
+		
 		for (int i = 0; i < game.getEnemies().size(); i++) {
 			g.drawImage(ogreCube, deltax * game.getEnemies().get(i).getCube().getX(),
 					deltay * game.getEnemies().get(i).getCube().getY(), deltax, deltay, null);
@@ -155,8 +154,8 @@ public class GamePanel extends JPanel {
 	}
 
 	void displayKey(Graphics g) {
-		int deltax = getHeight() / game.getMapArray().length;
-		int deltay = getWidth() / game.getMapArray()[0].length;
+		int deltay = getHeight() /  game.getMapArray().length;
+		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		if (!game.getHero().hasKey())
 			if (game.getKey().isHit()) {
@@ -185,8 +184,8 @@ public class GamePanel extends JPanel {
 
 		char map[][] = game.getMapArray();
 
-		int deltax = getHeight() / map.length;
-		int deltay = getWidth() / map[0].length;
+		int deltay = getHeight() / map.length;
+		int deltax = getWidth() / map[0].length;
 
 		for (int y = 0; y < map.length; y++)
 			for (int x = 0; x < map[y].length; x++) {

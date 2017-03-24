@@ -21,6 +21,13 @@ public class Ogre extends Character {
 		isStunned=2;
 		cube.setPosXY(pos_x, pos_y);
 	}
+	
+	public boolean justgotStunned(){
+		if (isStunned == 2)
+			return true;
+		else
+			return false;
+	}
 
 	public void move(OgreLevel ogreLevel) {
 		if(!canMove)

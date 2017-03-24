@@ -137,7 +137,7 @@ public class OgreLevel implements IGameLogicLevel{
 
 		// check is player is next to Ogre Cube
 		for (Ogre j : enemies)
-			if (j.getCube().isNextTo(hero)&&!j.isStunned()) {
+			if (j.getCube().isNextTo(hero) && !j.justgotStunned()) {
 				hero.wasKilled();
 				return false;
 			}
