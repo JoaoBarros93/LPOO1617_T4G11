@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import Logic.Game;
+import Logic.Ogre;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements KeyListener {
@@ -27,7 +28,10 @@ public class GamePanel extends JPanel implements KeyListener {
 	private Image guardAsleep;
 	private Image guardAwake;
 	private Image ogre;
-	private Image ogreCube;
+	private Image ogreCubeUp;
+	private Image ogreCubeDown;
+	private Image ogreCubeLeft;
+	private Image ogreCubeRight;
 	private Image ogreStunned;
 	private Image backGround;
 
@@ -63,9 +67,9 @@ public class GamePanel extends JPanel implements KeyListener {
 		if (game.levelIsOn() == 1) {
 			displayGuard(g);
 			displayLever(g);
-		} else {
-			displayOgres(g);
+		} else {			
 			displayKey(g);
+			displayOgres(g);
 
 		}
 
@@ -129,13 +133,30 @@ public class GamePanel extends JPanel implements KeyListener {
 				g.drawImage(doorClosed, deltax * game.getLever().getDoors().get(i).getX(), deltay * game.getLever().getDoors().get(i).getY(), deltax, deltay, null);
 
 	}
+	void displayCube(Graphics g, Ogre ogre) {
+		int deltay = getHeight() / game.getMapArray().length;
+		int deltax = getWidth() / game.getMapArray()[0].length;
+		if (ogre.getX() > ogre.getCube().getX())
+			g.drawImage(ogreCubeLeft, deltax * ogre.getCube().getX(), deltay * ogre.getCube().getY(), deltax, deltay,	null);
+		else if (ogre.getX() < ogre.getCube().getX())
+			g.drawImage(ogreCubeRight, deltax * ogre.getCube().getX(), deltay * ogre.getCube().getY(), deltax, deltay,	null);
+		else if (ogre.getY() > ogre.getCube().getY())
+			g.drawImage(ogreCubeUp, deltax * ogre.getCube().getX(), deltay * ogre.getCube().getY(), deltax, deltay,	null);
+		else if (ogre.getY() < ogre.getCube().getY())
+			g.drawImage(ogreCubeDown, deltax * ogre.getCube().getX(), deltay * ogre.getCube().getY(), deltax, deltay,	null);
+		
+		
+		
+	}
+	
 
 	void displayOgres(Graphics g) {
 		int deltay = getHeight() / game.getMapArray().length;
 		int deltax = getWidth() / game.getMapArray()[0].length;
 
 		for (int i = 0; i < game.getEnemies().size(); i++) {
-			g.drawImage(ogreCube, deltax * game.getEnemies().get(i).getCube().getX(), deltay * game.getEnemies().get(i).getCube().getY(), deltax, deltay, null);
+			displayCube(g,game.getEnemies().get(i));
+			//fssasag.drawImage(ogreCubeUp, deltax * game.getEnemies().get(i).getCube().getX(), deltay * game.getEnemies().get(i).getCube().getY(), deltax, deltay, null);
 
 			if (game.getEnemies().get(i).isStunned())
 				g.drawImage(ogreStunned, deltax * game.getEnemies().get(i).getX(), deltay * game.getEnemies().get(i).getY(), deltax, deltay, null);
@@ -158,8 +179,6 @@ public class GamePanel extends JPanel implements KeyListener {
 				g.drawImage(keyNotHit, deltax * game.getKey().getX(), deltay * game.getKey().getY(), deltax, deltay, null);
 
 			}
-		else
-			return;
 
 		for (int i = 0; i < game.getKey().getDoors().size(); i++)
 			if (game.getKey().getDoors().get(i).isOpen())
@@ -232,7 +251,10 @@ public class GamePanel extends JPanel implements KeyListener {
 
 		ogre = new ImageIcon("dkeep/Images/Ogre.png").getImage();
 
-		ogreCube = new ImageIcon("dkeep/Images/OgreCube.png").getImage();
+		ogreCubeUp = new ImageIcon("dkeep/Images/OgreCubeUp.png").getImage();
+		ogreCubeDown = new ImageIcon("dkeep/Images/OgreCubeDown.png").getImage();
+		ogreCubeLeft = new ImageIcon("dkeep/Images/OgreCubeLeft.png").getImage();
+		ogreCubeRight = new ImageIcon("dkeep/Images/OgreCubeRight.png").getImage();
 
 		ogreStunned = new ImageIcon("dkeep/Images/OgreStunned.png").getImage();
 	}

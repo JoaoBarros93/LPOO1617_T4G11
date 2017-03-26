@@ -2,10 +2,15 @@ package Logic;
 
 import java.util.Vector;
 
+/**
+ * The Class DungeonLevel.
+ */
 public class DungeonLevel implements IGameLogicLevel {
 
+	/** The wall char. */
 	private char wallChar = 'X';
 
+	/** The map. */
 	private char map[][] = { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ', 'X' }, { 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ', 'X' }, { 'X', 'X', 'X', ' ', 'X', 'X', 'X', ' ', ' ', 'X' },
@@ -13,17 +18,28 @@ public class DungeonLevel implements IGameLogicLevel {
 			{ 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ', 'X' },
 			{ 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
 
-	public char[][] getMap() {
-		return map;
-	}
 
+	/** The hero. */
 	private Hero hero;
+	
+	/** The guard. */
 	private Guard guard;
+	
+	/** The lever. */
 	private Lever lever;
+	
+	/** The other doors. */
 	private Vector<Door> otherDoors;
 
+	/** The is beaten. */
 	private boolean isBeaten;
 
+	/**
+	 * Instantiates a new dungeon level.
+	 *
+	 * @param guardPersona the guard personality
+	 * @param map the map
+	 */
 	public DungeonLevel(int guardPersona, char map[][]) {
 		this.map = map;
 
@@ -44,23 +60,57 @@ public class DungeonLevel implements IGameLogicLevel {
 			}
 
 	}
+	
+	/**
+	 * Gets the map.
+	 *
+	 * @return the map
+	 */
+	public char[][] getMap() {
+		return map;
+	}
 
+	/**
+	 * Gets the hero.
+	 *
+	 * @return the hero
+	 */
 	public Hero getHero() {
 		return hero;
 	}
 
+	/**
+	 * Gets the other doors.
+	 *
+	 * @return the other doors
+	 */
 	public Vector<Door> getOtherDoors() {
 		return otherDoors;
 	}
 
+	/**
+	 * Gets the guard.
+	 *
+	 * @return the guard
+	 */
 	public Guard getGuard() {
 		return guard;
 	}
 
+	/**
+	 * Gets the lever.
+	 *
+	 * @return the lever
+	 */
 	public Lever getLever() {
 		return lever;
 	}
 
+	/**
+	 * Instantiates a new dungeon level.
+	 *
+	 * @param guardPersona the guard personality
+	 */
 	public DungeonLevel(int guardPersona) {
 		hero = new Hero(1, 1);
 		guard = new Guard(8, 1, guardPersona);
@@ -77,22 +127,43 @@ public class DungeonLevel implements IGameLogicLevel {
 
 	}
 
+	/**
+	 * Checks if is beaten.
+	 *
+	 * @return true, if is beaten
+	 */
 	public boolean isBeaten() {
 		return isBeaten;
 	}
 
+	/**
+	 * Beaten.
+	 */
 	public void beaten() {
 		isBeaten = true;
 	}
 
+	/**
+	 * Checks if lever is activated.
+	 *
+	 * @return true, if is lever activated
+	 */
 	public boolean isLeverActivated() {
 		return lever.isActivated();
 	}
 
+	/**
+	 * Activate lever.
+	 */
 	public void activateLever() {
 		lever.activateLever();
 	}
 
+	/**
+	 * Draws Map to string.
+	 * 
+	 * @return Map to string
+	 */
 	@Override
 	public String toString() {
 		String ret = "\n\n\n";
@@ -131,6 +202,12 @@ public class DungeonLevel implements IGameLogicLevel {
 		return ret;
 	}
 
+	/**
+	 * Update Level.
+	 *
+	 * @param direction the direction the hero moves
+	 * @return true, if successful
+	 */
 	public boolean update(char direction) {
 
 		if (!hero.move(direction, this))
@@ -160,6 +237,13 @@ public class DungeonLevel implements IGameLogicLevel {
 		return true;
 	}
 
+	/**
+	 * Check if hero can move to Point
+	 *
+	 * @param  x_pos Coordinate x
+	 * @param  y_pos Coordinate y
+	 * @return true, if successful
+	 */
 	public boolean heroCanMoveTo(int x_pos, int y_pos) {
 		if (map[y_pos][x_pos] == wallChar)
 			return false;

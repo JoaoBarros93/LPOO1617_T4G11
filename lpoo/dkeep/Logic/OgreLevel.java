@@ -3,26 +3,43 @@ package Logic;
 import java.util.Random;
 import java.util.Vector;
 
+
+/**
+ * The Class OgreLevel.
+ */
 public class OgreLevel implements IGameLogicLevel {
 
+	/** The wall char. */
 	private char wallChar = 'X';
+	
+	/** Is beaten. */
 	private boolean isBeaten;
 
+	/** The map. */
 	private char map[][] = { { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' },
 			{ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' },
 			{ 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X' }, { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
 
+	/** The hero. */
 	private Hero hero;
+	
+	/** The enemies. */
 	private Vector<Ogre> enemies;
+	
+	/** The key. */
 	private Key key;
+	
+	/** The other doors. */
 	private Vector<Door> otherDoors;
 
-	public Vector<Door> getOtherDoors() {
-		return otherDoors;
-	}
 
+	/**
+	 * Instantiates a new ogre level.
+	 *
+	 * @param numOgres the number of ogres
+	 */
 	public OgreLevel(int numOgres) {
 		hero = new Hero(1, 7);
 		enemies = new Vector<Ogre>();
@@ -38,11 +55,32 @@ public class OgreLevel implements IGameLogicLevel {
 		}
 
 	}
+	
 
+	/**
+	 * Gets the other doors.
+	 *
+	 * @return the other doors
+	 */
+	public Vector<Door> getOtherDoors() {
+		return otherDoors;
+	}
+
+	/**
+	 * Gets the map.
+	 *
+	 * @return the map
+	 */
 	public char[][] getMap() {
 		return map;
 	}
 
+	/**
+	 * Instantiates a new ogre level.
+	 *
+	 * @param ogreCanMove true if ogre can move
+	 * @param map the map
+	 */
 	public OgreLevel(boolean ogreCanMove, char map[][]) {
 		this.map = map;
 
@@ -68,26 +106,55 @@ public class OgreLevel implements IGameLogicLevel {
 
 	}
 
+	/**
+	 * Gets the hero.
+	 *
+	 * @return the hero
+	 */
 	public Hero getHero() {
 		return hero;
 	}
 
+	/**
+	 * Gets the enemies.
+	 *
+	 * @return the enemies
+	 */
 	public Vector<Ogre> getEnemies() {
 		return enemies;
 	}
 
+	/**
+	 * Gets the key.
+	 *
+	 * @return the key
+	 */
 	public Key getKey() {
 		return key;
 	}
 
+	/**
+	 * Checks if is beaten.
+	 *
+	 * @return true, if is beaten
+	 */
 	public boolean isBeaten() {
 		return isBeaten;
 	}
 
+	/**
+	 * Beaten.
+	 */
 	public void beaten() {
 		isBeaten = true;
 	}
 
+	/**
+	 * Update Level.
+	 *
+	 * @param direction the direction the hero moves
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean update(char direction) {
 
@@ -157,6 +224,11 @@ public class OgreLevel implements IGameLogicLevel {
 
 	}
 
+	/**
+	 * Draws Map to string.
+	 * 
+	 * @return Map to string
+	 */
 	@Override
 	public String toString() {
 		String ret = "\n\n\n";
@@ -211,10 +283,14 @@ public class OgreLevel implements IGameLogicLevel {
 		return ret;
 	}
 
-	// 0 hero can move
-	// 1 cant move
-	// 2 opens do
 
+	/**
+	 * Check if hero can move to Point
+	 *
+	 * @param  x_pos Coordinate x
+	 * @param  y_pos Coordinate y
+	 * @return true, if successful
+	 */
 	public boolean heroCanMoveTo(int x_pos, int y_pos) {
 		if (map[y_pos][x_pos] == wallChar)
 			return false;
@@ -235,6 +311,13 @@ public class OgreLevel implements IGameLogicLevel {
 		return true;
 	}
 
+	/**
+	 * Check if Ogre can move to.
+	 *
+	 * @param x the Coordinate x
+	 * @param y the Coordinate y
+	 * @return true, if successful
+	 */
 	public boolean ogreCanMoveTo(int x, int y) {
 		if (map[y][x] == wallChar)
 			return false;
@@ -250,6 +333,13 @@ public class OgreLevel implements IGameLogicLevel {
 		return true;
 	}
 
+	/**
+	 * Ogre can atack Point.
+	 *
+	 * @param x the Coordinate x
+	 * @param y the Coordinate y
+	 * @return true, if successful
+	 */
 	public boolean ogreCanAtack(int x, int y) {
 		if (map[y][x] == wallChar)
 			return false;

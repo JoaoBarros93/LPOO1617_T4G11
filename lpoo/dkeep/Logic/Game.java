@@ -2,17 +2,38 @@ package Logic;
 
 import java.util.Vector;
 
+/**
+ * The Class Game.
+ */
 public class Game {
+	
+	/** The level 1. */
 	private DungeonLevel level1;
+	
+	/** The level 2. */
 	private OgreLevel level2;
+	
+	/** Is game on. */
 	private boolean gameOn = true;
 
+	/**
+	 * Instantiates a new game.
+	 *
+	 * @param guardPersona the guard personality
+	 * @param numOgres the number of ogres
+	 */
 	public Game(int guardPersona, int numOgres) {
 		level1 = new DungeonLevel(guardPersona);
 		level2 = new OgreLevel(numOgres);
 
 	}
 
+	/**
+	 * Instantiates a new game.
+	 *
+	 * @param guardPersonality the guard personality
+	 * @param numOgres the number of ogres
+	 */
 	public Game(String guardPersonality, int numOgres) {
 		if (guardPersonality == "Rookie")
 			level1 = new DungeonLevel(1);
@@ -25,6 +46,12 @@ public class Game {
 
 	}
 
+	/**
+	 * Update game.
+	 *
+	 * @param direction the direction the hero moves
+	 * @return true, if successful
+	 */
 	public boolean updateGame(char direction) {
 		if (!level1.isBeaten()) {
 			gameOn = level1.update(direction);
@@ -38,10 +65,20 @@ public class Game {
 
 	}
 
+	/**
+	 * Checks if is game on.
+	 *
+	 * @return true, if is game on
+	 */
 	public boolean isGameOn() {
 		return gameOn;
 	}
 
+	/**
+	 * Gets the map.
+	 *
+	 * @return the map
+	 */
 	public String getMap() {
 		if (!level1.isBeaten())
 			return level1.toString();
@@ -50,6 +87,11 @@ public class Game {
 
 	}
 
+	/**
+	 * Gets the map array.
+	 *
+	 * @return the map array
+	 */
 	public char[][] getMapArray() {
 		if (!level1.isBeaten())
 			return level1.getMap();
@@ -58,9 +100,12 @@ public class Game {
 
 	}
 
-	// int = 0 - beaten
-	// int = 1 - lost on level 1
-	// int = 2 - lost on level 2
+
+	/**
+	 * Results.
+	 *
+	 * @return the 0 if beaten, 1 if lost on level1, 2 if lost on level2
+	 */
 	public int results() {
 		if (level2.isBeaten())
 			return 0;
@@ -72,6 +117,11 @@ public class Game {
 
 	}
 
+	/**
+	 * Level in which the game is.
+	 *
+	 * @return the number of the level
+	 */
 	public int levelIsOn() {
 		if (!level1.isBeaten())
 			return 1;
@@ -80,6 +130,11 @@ public class Game {
 
 	}
 
+	/**
+	 * Gets the hero.
+	 *
+	 * @return the hero
+	 */
 	public Hero getHero() {
 		if (!level1.isBeaten())
 			return level1.getHero();
@@ -87,17 +142,32 @@ public class Game {
 			return level2.getHero();
 	}
 
+	/**
+	 * Gets the guard.
+	 *
+	 * @return the guard
+	 */
 	public Guard getGuard() {
 
 		return level1.getGuard();
 	}
 
+	/**
+	 * Gets the lever.
+	 *
+	 * @return the lever
+	 */
 	public Lever getLever() {
 
 		return level1.getLever();
 
 	}
 
+	/**
+	 * Gets the doors.
+	 *
+	 * @return the doors
+	 */
 	public Vector<Door> getDoors() {
 		if (!level1.isBeaten()) {
 			return level1.getOtherDoors();
@@ -105,10 +175,20 @@ public class Game {
 			return level2.getOtherDoors();
 	}
 
+	/**
+	 * Gets the enemies.
+	 *
+	 * @return the enemies
+	 */
 	public Vector<Ogre> getEnemies() {
 		return level2.getEnemies();
 	}
 
+	/**
+	 * Gets the key.
+	 *
+	 * @return the key
+	 */
 	public Key getKey() {
 		return level2.getKey();
 	}

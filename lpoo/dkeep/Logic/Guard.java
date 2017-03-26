@@ -2,31 +2,58 @@ package Logic;
 
 import java.util.Random;
 
+/**
+ * The Class Guard.
+ */
 public class Guard extends Character {
 
+	/** The moves the guard makes. */
 	private char moves[] = { 'a', 's', 's', 's', 's', 'a', 'a', 'a', 'a', 'a', 'a', 's', 'd', 'd', 'd', 'd', 'd', 'd',
 			'd', 'w', 'w', 'w', 'w', 'w' };
 
+	/** The next move. */
 	private int nextMove = 0;
+	
+	/** Is moving front. */
 	private boolean isMovingFront = true;
+	
+	/** Is asleep. */
 	private int isAsleep = 0;
 
 	// 0-not moving
 	// 1-rookie
 	// 2-Druken
 	// 3-Suspicious
+	/** The guard personality. */
 	private int guardPersona;
 
+	/**
+	 * Instantiates a new guard.
+	 *
+	 * @param pos_x the Coordinate x
+	 * @param pos_y the Coordinate y
+	 * @param guardPersona the guard personality
+	 */
 	public Guard(int pos_x, int pos_y, int guardPersona) {
 		super(pos_x, pos_y);
 		this.guardPersona = guardPersona;
 	}
 
+	/**
+	 * Checks if is asleep.
+	 *
+	 * @return true, if is asleep
+	 */
 	public boolean isAsleep() {
 		return (isAsleep != 0);
 
 	}
 
+	/** 
+	 * Draws Guard to string.
+	 * 
+	 * @return Guard to string
+	 */
 	@Override
 	public String toString() {
 		if (isAsleep())
@@ -34,6 +61,9 @@ public class Guard extends Character {
 		return "G";
 	}
 
+	/**
+	 * Move Guard.
+	 */
 	public void move() {
 
 		switch (guardPersona) {
@@ -54,6 +84,9 @@ public class Guard extends Character {
 
 	}
 
+	/**
+	 * Move drunken.
+	 */
 	public void moveDruken() {
 		if (isAsleep()) {
 			isAsleep--;
@@ -84,6 +117,9 @@ public class Guard extends Character {
 
 	}
 
+	/**
+	 * Move suspicious.
+	 */
 	public void moveSuspicious() {
 		Random rand = new Random();
 		int nume;
@@ -111,6 +147,9 @@ public class Guard extends Character {
 
 	}
 
+	/**
+	 * Move in the original path.
+	 */
 	public void movefront() {
 
 		char dir = moves[nextMove];
@@ -138,6 +177,9 @@ public class Guard extends Character {
 		}
 	}
 
+	/**
+	 * Move Backwards.
+	 */
 	public void moveback() {
 
 		char dir = moves[nextMove];

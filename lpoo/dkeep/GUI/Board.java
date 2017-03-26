@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import net.miginfocom.swing.MigLayout;
 
+
 import javax.swing.JButton;
 
 import java.awt.FlowLayout;
@@ -79,6 +80,7 @@ public class Board extends JFrame {
 
 	}
 
+	@SuppressWarnings("unused")
 	private void createOptionsFrame() {
 		OptionsFrame optionsFrame = new OptionsFrame(this);
 
