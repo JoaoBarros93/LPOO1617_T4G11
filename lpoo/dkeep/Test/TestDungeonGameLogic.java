@@ -84,9 +84,15 @@ public class TestDungeonGameLogic {
 		char heroMoves[] = { 'd', 'd', 's', 's', 's', 's', 's', 's', 's', 'w', 'w', 'd', 'd', 'd', 'd', 'd', 's', 's',
 				'a', 'd', 'w', 'w', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a' };
 		assertTrue(level1.getHero().positionIs(1, 1));
+		assertTrue(level1.getLever().getDoors().size()==2);
 		assertFalse(level1.isBeaten());
+		
 		for(char i: heroMoves){
+			int pos_xGuard=level1.getGuard().getX();
+			int pos_yGuard=level1.getGuard().getY();
 			level1.update(i);
+			assertFalse(pos_xGuard==level1.getGuard().getX()&&pos_yGuard==level1.getGuard().getY());
+			
 		}
 		assertTrue(level1.isBeaten());
 	}
@@ -95,6 +101,8 @@ public class TestDungeonGameLogic {
 	public void testCompareTwoMaps() {
 		DungeonLevel level1 = new DungeonLevel(0, map);
 		assertTrue(level1.getHero().positionIs(1, 1));
+		assertTrue(level1.getLever().getDoors().size()==2);
+		assertTrue(level1.getOtherDoors().size()==0);
 		
 		String map1s = level1.toString();
 		

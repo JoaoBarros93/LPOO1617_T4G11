@@ -95,6 +95,17 @@ public class TestOgreMovingLevel {
 		assertTrue(level2.getKey().isHit());
 
 	}
+	
+	@Test(timeout=1000)
+	public void testOriginalOgreLevel() {
+		
+		OgreLevel level2 = new OgreLevel(1);
+		assertTrue(level2.getHero().positionIs(1, 7));
+		assertTrue(level2.getHero().isAlive());
+		assertTrue(level2.getKey().positionIs(7, 1));
+		assertTrue(level2.getEnemies().size()==1);
+
+	}
 
 	
 }
