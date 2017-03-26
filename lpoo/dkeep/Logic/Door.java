@@ -66,32 +66,16 @@ public class Door extends Object {
 	 */
 	public boolean canBeOpenWith(Hero hero, char direction) {
 
-		switch (direction) {
-		case 'w':
-			if (getX() == hero.getX() && getY() == hero.getY() - 1) {
-				return true;
-			}
-			break;
+		if (getX() == hero.getX() && getY() == hero.getY() - 1 && direction == 'w')
+			return true;
+		if (getX() == hero.getX() && getY() == hero.getY() + 1 && direction == 's')
+			return true;
 
-		case 's':
-			if (getX() == hero.getX() && getY() == hero.getY() + 1) {
-				return true;
-			}
-			break;
+		if (getX() == hero.getX() - 1 && getY() == hero.getY() && direction == 'a')
+			return true;
+		if (getX() == hero.getX() + 1 && getY() == hero.getY() && direction == 'd')
+			return true;
 
-		case 'a':
-			if (getX() == hero.getX() - 1 && getY() == hero.getY()) {
-				return true;
-			}
-			break;
-
-		case 'd':
-			if (getX() == hero.getX() + 1 && getY() == hero.getY()) {
-				return true;
-			}
-			break;
-
-		}
 		return false;
 
 	}

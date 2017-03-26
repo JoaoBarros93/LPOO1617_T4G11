@@ -79,35 +79,19 @@ public class Ogre extends Character {
 		boolean canMove = false;
 
 		while (!canMove) {
-
-			switch (randomNum) {
-			case 0:
-				if (ogreLevel.ogreCanMoveTo(getX(), getY() - 1)) {
-					moveUp();
-					canMove = true;
-				}
-				break;
-
-			case 1:
-				if (ogreLevel.ogreCanMoveTo(getX(), getY() + 1)) {
-					moveDown();
-					canMove = true;
-				}
-				break;
-
-			case 2:
-				if (ogreLevel.ogreCanMoveTo(getX() - 1, getY())) {
-					moveLeft();
-					canMove = true;
-				}
-				break;
-
-			case 3:
-				if (ogreLevel.ogreCanMoveTo(getX() + 1, getY())) {
-					moveRight();
-					canMove = true;
-				}
-				break;
+			
+			if (ogreLevel.ogreCanMoveTo(getX(), getY() - 1) && randomNum == 0) {
+				moveUp();
+				canMove = true;
+			} else if (ogreLevel.ogreCanMoveTo(getX(), getY() + 1) && randomNum == 1) {
+				moveDown();
+				canMove = true;
+			} else if (ogreLevel.ogreCanMoveTo(getX() - 1, getY()) && randomNum == 2) {
+				moveLeft();
+				canMove = true;
+			} else if (ogreLevel.ogreCanMoveTo(getX() + 1, getY()) && randomNum == 3) {
+				moveRight();
+				canMove = true;
 			}
 
 			if (!canMove) {
@@ -143,36 +127,19 @@ public class Ogre extends Character {
 
 		while (!canAtack) {
 
-			switch (randomNum) {
-			case 0:
-				if (ogreLevel.ogreCanAtack(getX(), getY() - 1)) {
-					cube.setPosXY(getX(), getY() - 1);
-					canAtack = true;
-				}
-				break;
-
-			case 1:
-				if (ogreLevel.ogreCanAtack(getX(), getY() + 1)) {
-					cube.setPosXY(getX(), getY() + 1);
-					canAtack = true;
-				}
-				break;
-
-			case 2:
-				if (ogreLevel.ogreCanAtack(getX() - 1, getY())) {
-					cube.setPosXY(getX() - 1, getY());
-					canAtack = true;
-				}
-				break;
-
-			case 3:
-				if (ogreLevel.ogreCanAtack(getX() + 1, getY())) {
-					cube.setPosXY(getX() + 1, getY());
-					canAtack = true;
-				}
-				break;
+			if (randomNum == 0 && ogreLevel.ogreCanAtack(getX(), getY() - 1)) {
+				cube.setPosXY(getX(), getY() - 1);
+				canAtack = true;
+			} else if (randomNum == 1 && ogreLevel.ogreCanAtack(getX(), getY() + 1)) {
+				cube.setPosXY(getX(), getY() + 1);
+				canAtack = true;
+			} else if (randomNum == 2 && ogreLevel.ogreCanAtack(getX() - 1, getY())) {
+				cube.setPosXY(getX() - 1, getY());
+				canAtack = true;
+			} else if (randomNum == 3 && ogreLevel.ogreCanAtack(getX() + 1, getY())) {
+				cube.setPosXY(getX() + 1, getY());
+				canAtack = true;
 			}
-
 			if (!canAtack) {
 				randomNum++;
 				if (randomNum > 3)
