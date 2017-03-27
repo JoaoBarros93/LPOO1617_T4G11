@@ -12,3 +12,7 @@ EclEmma:
 
 PIT tools:
 ![pit tools](https://cloud.githubusercontent.com/assets/25747690/24333957/8b4addf2-1259-11e7-8959-f30f9a3f50d2.png)
+
+
+BetterCodeHub Badge:
+[![BCH compliance](https://bettercodehub.com/edge/badge/JoaoBarros93/LPOO1617_T4G11)](https://bettercodehub.com/)
