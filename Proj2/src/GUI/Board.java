@@ -16,17 +16,15 @@ public class Board extends JFrame {
 	private Image Player2;
 	private Image Player3;
 	private Image Player4;
-	
-	
-	private Image backGroundMainMenu;
-	
-	private Image backGroundGame;
-	
-	  JPanel cards;
-	  JPanel mainMenu;
-	  GamePanel gamePanel;
-	  public JPanel optionsMenu;
 
+	public Image backGroundMainMenu;
+
+	public Image backGroundGame;
+
+	//JPanel cards;
+	MainMenu mainMenu;
+	GamePanel gamePanel;
+	public OptionsMenu optionsMenu;
 
 
 	/**
@@ -34,15 +32,18 @@ public class Board extends JFrame {
 	 */
 	public Board() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 800, 600);
 		setResizable(false);
+		
+
+		backGroundMainMenu = new ImageIcon("src/Images/BackGround.png").getImage();
 		
 		mainMenu=new  MainMenu(this);
 		optionsMenu=new  OptionsMenu(this);
 		gamePanel=new  GamePanel(this);
 		
 
-		setpanel(gamePanel);
+		setpanel(mainMenu);
         setVisible(true); //Make JFrame visible
 	}
 	

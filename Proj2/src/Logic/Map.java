@@ -9,43 +9,47 @@ public class Map {
 
 	}
 
-	byte getPosMap(int x, int y) {
+	public byte getPosMap(int x, int y) {
 		return map[y][x];
 	}
 
-	void setPosMap(int x, int y, byte value) {
+	public void setPosMap(int x, int y, byte value) {
 		map[y][x] = value;
 	}
 	
-	boolean isEmpty(int x, int y){
+	public boolean isEmpty(int x, int y){
 		if(map[y][x]!=0)
 			return false;
 		else return true;	
 	}
 	
-	int getMaxXsize(){
+	public int getMaxXsize(){
 		return map[0].length;
 		
 		
 	}
 	
-	int getMaxY(){
+	public int getMaxY(){
 		return map.length;
 		
 		
 	}
 	
-	int[] getAdjacent(int x, int y){
-		
-		int[] adjs = new int[4];
-		
-		//if(y+1>=getMaxY)
-		//adjs[0]=
-		
+	public boolean getAdjacent(int x, int y) {
 
-		
-		 return adjs;
-		
-		
+		if (y + 1 < getMaxY() && getPosMap(x, y + 1) != 0)
+			return true;
+
+		if (y - 1 >= 0 && getPosMap(x, y - 1) != 0)
+			return true;
+
+		if (x + 1 < getMaxXsize() && getPosMap(x + 1, y) != 0)
+			return true;
+
+		if (x - 1 >= 0 && getPosMap(x - 1, y) != 0)
+			return true;
+
+		return false;
+
 	}
 }

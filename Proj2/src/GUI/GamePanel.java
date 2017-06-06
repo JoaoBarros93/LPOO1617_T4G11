@@ -1,6 +1,12 @@
 package GUI;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
+
+import Logic.Game;
+import Logic.Map;
+import Logic.Player;
+import Logic.BotBehaviours.*;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -9,9 +15,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements ActionListener {
+	
+	  private final int DELAY = 25;
+	  private Timer timer;
+	
+	Board board;
 	
 	private Image Player1;
 	private Image Player2;
@@ -23,63 +36,64 @@ public class GamePanel extends JPanel {
 	private Image tail3;
 	private Image tail4;
 	
-	private Image backGroundGame;
 	
-	private boolean drawGame = false;
 	
-	int game[][]={{0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0},
-			{0,0,1,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,1,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,1,0,0},
-			{0,0,0,1,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,1,0,0,0,0}
-	};
+	private BotBehaviour[] botBehaviours = new BotBehaviour[4];
 	
+	public Image backGroundGame;
+	
+	private boolean drawGame=false;
+	boolean gameOver=true;
+		
+	GamePanelStatus gamePanelStatus;
+	
+	
+	
+	Game game;
 	
 	/**
 	 * Create the panel.
 	 */
 	public GamePanel(Board board) {
 		setLayout(null);
+		this.board=board;
+		addKeyListener(new TAdapter());
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(141, 95, 169, 86);
-		add(panel);
-		panel.setLayout(null);
+		gamePanelStatus= new GamePanelStatus(this);		
 		
-		JLabel lblStatus = new JLabel("Status");
-		lblStatus.setBounds(53, 11, 46, 14);
-		panel.add(lblStatus);
+		botBehaviours[0]=new Random();
+		botBehaviours[1]=new WallHugging();
+		botBehaviours[2]=new EnemyAvoidance();
+		botBehaviours[3]=new MostOpenDestination();
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				remove(panel);
-				repaint();
-			}
-		});
-		btnNewButton.setBounds(10, 52, 69, 23);
-		panel.add(btnNewButton);
-		
-		JButton button = new JButton("New button");
-		button.setBounds(88, 52, 69, 23);
-		panel.add(button);
-		
-		
+		//game=new Game (1, 1,botBehaviours[0]);
 		
 		loadImages();
+		
+		 timer = new Timer(DELAY, this);
+		 timer.start();	
+
+		
+		
 
 
+	}
+	
+	public void startGameSingle() throws InterruptedException{
+		//game = new Game(1, board.optionsMenu.getAISelected(),
+		//		botBehaviours[board.optionsMenu.getBotBehaviourSelected()]);
+		game = new Game(1, 1,botBehaviours[1]);
+		drawGame = true;
+		gameOver=false;
+		
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		g.drawImage(backGroundGame, 0, 0, getWidth(), getHeight(), null);
+		
+		if(drawGame)
 		displayGame(g);
 
 		requestFocusInWindow();
@@ -90,24 +104,70 @@ public class GamePanel extends JPanel {
 
 	private void loadImages() {
 		Player1 = new ImageIcon("src/Images/p1.png").getImage();
-
 		Player2 = new ImageIcon("src/Images/p2.png").getImage();
+		Player3 = new ImageIcon("src/Images/p3.png").getImage();
+		Player4 = new ImageIcon("src/Images/p4.png").getImage();
 
 		tail1 = new ImageIcon("src/Images/tail1.png").getImage();
+		tail2 = new ImageIcon("src/Images/tail2.png").getImage();
+		tail3 = new ImageIcon("src/Images/tail3.png").getImage();
+		tail4 = new ImageIcon("src/Images/tail4.png").getImage();
 		
 		backGroundGame = new ImageIcon("src/Images/backGame.png").getImage();
 
 		
 	}
 	
+	 @Override
+	 public void actionPerformed(ActionEvent e) {
+
+
+	        if (!gameOver) {
+	        	gameOver=game.update();
+	        }
+
+	        repaint();
+	    }
+	 
+	
 	void displayGame(Graphics g) {
+		
+		Map map= game.getMap();
 
-		int deltay = getHeight() /game.length;
-		int deltax = getWidth() / game[0].length;
+		int deltay = getHeight() /map.getMaxY();
+		int deltax = getWidth() / map.getMaxXsize();
+		
+		
 
-		for(int i = 0; i<game.length;i++)
-			for(int j = 0; j<game[i].length;j++)
-				if(game[i][j]==1)
-			g.drawImage(tail1, deltax * j, deltay * i, deltax, deltay, null);
+		for (int y = 0; y < game.getMap().getMaxY(); y++)
+			for (int x = 0; x < map.getMaxXsize(); x++)
+				if (map.getPosMap(x, y) != 0)
+					g.drawImage(tail1, deltax * x, deltay * y, deltax, deltay, null);
 	}
+	
+	private class TAdapter extends KeyAdapter {
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+
+            int key = e.getKeyCode();
+
+            if ((key == KeyEvent.VK_LEFT) && !game.isDirPlayer(0,Player.RIGHT)) {
+            	game.setDirPlayer(0, Player.LEFT);
+            }
+
+            if ((key == KeyEvent.VK_RIGHT) && !game.isDirPlayer(0,Player.LEFT)) {
+            	game.setDirPlayer(0, Player.RIGHT);
+            }
+
+            if ((key == KeyEvent.VK_UP) && !game.isDirPlayer(0,Player.DOWN)) {
+            	game.setDirPlayer(0, Player.UP);
+            }
+
+            if ((key == KeyEvent.VK_DOWN) && !game.isDirPlayer(0,Player.UP)) {
+            	game.setDirPlayer(0, Player.DOWN);
+            }
+        }
+    }
+	
 }
