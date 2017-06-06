@@ -16,7 +16,7 @@ public class WallHugging implements BotBehaviour {
 		for(int i = 0; i < dirs.length; i++){
 			int newDir=dirs[i];
 			int[] newPos=player.nextXPosInThisDir(newDir);
-			if(map.getPosMap(newPos[0], newPos[1])!=0)
+			if(!map.validCoord(newPos[0], newPos[1])||map.getPosMap(newPos[0], newPos[1])!=0)
 				continue;
 			
 			if(map.getAdjacent(newPos[0], newPos[1])){

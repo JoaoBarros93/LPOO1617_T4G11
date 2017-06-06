@@ -44,6 +44,9 @@ public class GamePanel extends JPanel implements ActionListener {
 	
 	private boolean drawGame=false;
 	boolean gameOver=true;
+	boolean showPanel=false;
+	
+	private int playerWhoWon;
 		
 	GamePanelStatus gamePanelStatus;
 	
@@ -56,6 +59,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	 */
 	public GamePanel(Board board) {
 		setLayout(null);
+		//setBounds(100, 100, 800, 600);
 		this.board=board;
 		addKeyListener(new TAdapter());
 		
@@ -80,11 +84,12 @@ public class GamePanel extends JPanel implements ActionListener {
 	}
 	
 	public void startGameSingle() throws InterruptedException{
-		//game = new Game(1, board.optionsMenu.getAISelected(),
-		//		botBehaviours[board.optionsMenu.getBotBehaviourSelected()]);
-		game = new Game(1, 1,botBehaviours[1]);
+		game = new Game(1, board.optionsMenu.getAISelected(),
+				botBehaviours[board.optionsMenu.getBotBehaviourSelected()]);
+		//game = new Game(1, 1,botBehaviours[0]);
 		drawGame = true;
 		gameOver=false;
+		showPanel=false;
 		
 	}
 	
@@ -122,13 +127,24 @@ public class GamePanel extends JPanel implements ActionListener {
 	 public void actionPerformed(ActionEvent e) {
 
 
-	        if (!gameOver) {
-	        	gameOver=game.update();
-	        }
+		if (!gameOver) {
+			gameOver = game.update();
+			showPanel = gameOver;
+			playerWhoWon=game.getPlayerwhoWon();
+		}
 
-	        repaint();
-	    }
-	 
+		if (showPanel && gameOver) {
+			if (game.getPlayerwhoWon() != -1)
+				gamePanelStatus.lblStatus.setText("You Won!");
+			else
+				gamePanelStatus.lblStatus.setText("You Lose!");
+
+			add(gamePanelStatus);
+
+		}
+
+		repaint();
+	}
 	
 	void displayGame(Graphics g) {
 		

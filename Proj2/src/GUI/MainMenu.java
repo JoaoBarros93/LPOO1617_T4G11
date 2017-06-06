@@ -25,12 +25,15 @@ public class MainMenu extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setpanel(frame.gamePanel);
+				frame.gamePanel.remove(frame.gamePanel.gamePanelStatus);
+				frame.gamePanel.repaint();
 				try {
 					frame.gamePanel.startGameSingle();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			
 				
 			}
 		});

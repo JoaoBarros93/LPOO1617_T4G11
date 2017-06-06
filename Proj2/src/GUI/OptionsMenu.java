@@ -62,28 +62,31 @@ public class OptionsMenu extends JPanel {
 
 	public void initAISelector() {
 		
-		comboBoxAI.addItem("1");
-		comboBoxAI.addItem("2");
-		comboBoxAI.addItem("3");
+
+		comboBoxAI.addItem("Random");
+		comboBoxAI.addItem("Wall-hugging");
+		comboBoxAI.addItem("Enemy Avoidance");
+		comboBoxAI.addItem("Most Open Destination");
 
 	}
 	
 	public void initNumBotsSelector() {
 		
-		comboBoxNumBots.addItem("Random");
-		comboBoxNumBots.addItem("Wall-hugging");
-		comboBoxNumBots.addItem("Enemy Avoidance");
-		comboBoxNumBots.addItem("Most Open Destination");
+		comboBoxNumBots.addItem("1");
+		comboBoxNumBots.addItem("2");
+		comboBoxNumBots.addItem("3");
 
 	}
 	
 	public int getAISelected(){
+		String arroz= comboBoxNumBots.getSelectedItem().toString();
 		return Integer.parseInt(comboBoxNumBots.getSelectedItem().toString());		
 		
 	}
 	
 	public int getBotBehaviourSelected(){
-		return comboBoxNumBots.getSelectedIndex();		
+		//return comboBoxNumBots.getSelectedIndex();
+		return 0;
 		
 	}
 	

@@ -15,12 +15,12 @@ public class Game {
     /**
      * The arena width in meters.
      */
-    public static final int ARENA_WIDTH = 52;
+    public static final int ARENA_WIDTH = 200;
 
     /**
      * The arena height in meters.
      */
-    public static final int ARENA_HEIGHT = 52;
+    public static final int ARENA_HEIGHT = 160;
     
     
     /**
@@ -100,7 +100,12 @@ public class Game {
     	
     }
 
-    /**
+    public int getPlayerwhoWon() {
+		return playerwhoWon;
+	}
+
+
+	/**
      * Calculates the next  step of duration delta (in seconds).
      *
      * @param delta The size of this physics step in seconds.
@@ -235,6 +240,7 @@ public class Game {
     	if(numAlivePlayers==0){
     		gameOver=true;
     	    gameWon=false;
+    	    playerwhoWon=-1;
     	    return true;
     	}
     	
@@ -261,7 +267,7 @@ public class Game {
 				map.setPosMap(x, ARENA_HEIGHT - 1, (byte) 1);
 			}
 			
-			for (int y = 0; y < map.getMaxXsize(); y++){
+			for (int y = 0; y < map.getMaxY(); y++){
 				map.setPosMap(0, y, (byte) 1);
 				map.setPosMap(ARENA_WIDTH - 1, y, (byte) 1);
 			}

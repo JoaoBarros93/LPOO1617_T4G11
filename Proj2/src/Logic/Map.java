@@ -5,7 +5,7 @@ public class Map {
 	private byte[][] map;
 
 	public Map(int ARENA_WIDTH, int ARENA_HEIGHT) {
-		map = new byte[ARENA_WIDTH][ARENA_HEIGHT];
+		map = new byte[ARENA_HEIGHT][ARENA_WIDTH];
 
 	}
 
@@ -52,4 +52,18 @@ public class Map {
 		return false;
 
 	}
+	
+	public boolean validCoord(int x, int y) {
+
+		if (y < 0 || y >= getMaxY())
+			return false;
+		
+		if (x < 0 || x >= getMaxXsize())
+			return false;
+
+		return true;
+
+	}
+	
+	
 }
