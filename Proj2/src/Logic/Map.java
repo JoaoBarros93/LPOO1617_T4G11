@@ -35,7 +35,7 @@ public class Map {
 		
 	}
 	
-	public boolean getAdjacent(int x, int y) {
+	public boolean isNextToWall(int x, int y) {
 
 		if (y + 1 < getMaxY() && getPosMap(x, y + 1) != 0)
 			return true;
@@ -64,6 +64,27 @@ public class Map {
 		return true;
 
 	}
-	
+
+	public int[] getAdj(int x, int y) {
+		int up = -1;
+		int right = -1;
+		int down = -1;
+		int left = -1;
+
+		if (validCoord(x, y - 1))
+			up = getPosMap(x, y - 1);
+
+		if (validCoord(x + 1, y))
+			right = getPosMap(x + 1, y);
+
+		if (validCoord(x, y + 1))
+			down = getPosMap(x, y + 1);
+
+		if (validCoord(x - 1, y))
+			left = getPosMap(x - 1, y);
+
+		return new int[] { up, right, down, left };
+
+	}
 	
 }

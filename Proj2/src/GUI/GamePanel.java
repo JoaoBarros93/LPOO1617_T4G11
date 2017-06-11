@@ -9,6 +9,7 @@ import Logic.Player;
 import Logic.BotBehaviours.*;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -21,20 +22,20 @@ import java.awt.event.ActionEvent;
 
 public class GamePanel extends JPanel implements ActionListener {
 	
-	  private final int DELAY = 25;
+	  private final int DELAY = 25*4;
 	  private Timer timer;
 	
 	Board board;
 	
-	private Image Player1;
-	private Image Player2;
-	private Image Player3;
-	private Image Player4;
+	Image[] PlayersH;
+	Image[] PlayersV;
 	
 	private Image tail1;
 	private Image tail2;
 	private Image tail3;
 	private Image tail4;
+	
+	private Image wall;
 	
 	
 	
@@ -84,7 +85,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	}
 	
 	public void startGameSingle() throws InterruptedException{
-		game = new Game(1, board.optionsMenu.getAISelected(),
+		game = new Game(1, board.optionsMenu.getNumBotsSelected(),
 				botBehaviours[board.optionsMenu.getBotBehaviourSelected()]);
 		//game = new Game(1, 1,botBehaviours[0]);
 		drawGame = true;
@@ -108,15 +109,25 @@ public class GamePanel extends JPanel implements ActionListener {
 	
 
 	private void loadImages() {
-		Player1 = new ImageIcon("src/Images/p1.png").getImage();
-		Player2 = new ImageIcon("src/Images/p2.png").getImage();
-		Player3 = new ImageIcon("src/Images/p3.png").getImage();
-		Player4 = new ImageIcon("src/Images/p4.png").getImage();
+		
+		Image Player1H = new ImageIcon("src/Images/p1H.png").getImage();
+		Image Player2H = new ImageIcon("src/Images/p2H.png").getImage();
+		Image Player3H = new ImageIcon("src/Images/p3H.png").getImage();
+		Image Player4H = new ImageIcon("src/Images/p4H.png").getImage();
+		PlayersH=new Image[]{Player1H,Player2H,Player3H,Player4H};
+		
+		Image Player1V = new ImageIcon("src/Images/p1V.png").getImage();
+		Image Player2V = new ImageIcon("src/Images/p2V.png").getImage();
+		Image Player3V = new ImageIcon("src/Images/p3V.png").getImage();
+		Image Player4V = new ImageIcon("src/Images/p4V.png").getImage();
+		PlayersV=new Image[]{Player1V,Player2V,Player3V,Player4V};
 
 		tail1 = new ImageIcon("src/Images/tail1.png").getImage();
 		tail2 = new ImageIcon("src/Images/tail2.png").getImage();
 		tail3 = new ImageIcon("src/Images/tail3.png").getImage();
 		tail4 = new ImageIcon("src/Images/tail4.png").getImage();
+		
+		wall = new ImageIcon("src/Images/Wall.png").getImage();
 		
 		backGroundGame = new ImageIcon("src/Images/backGame.png").getImage();
 
@@ -149,6 +160,13 @@ public class GamePanel extends JPanel implements ActionListener {
 	void displayGame(Graphics g) {
 		
 		Map map= game.getMap();
+		
+		int gh=getHeight();
+		int gmy=map.getMaxY();
+		int gw=getWidth();
+		int gmx=map.getMaxXsize();
+		
+		
 
 		int deltay = getHeight() /map.getMaxY();
 		int deltax = getWidth() / map.getMaxXsize();
@@ -157,8 +175,74 @@ public class GamePanel extends JPanel implements ActionListener {
 
 		for (int y = 0; y < game.getMap().getMaxY(); y++)
 			for (int x = 0; x < map.getMaxXsize(); x++)
-				if (map.getPosMap(x, y) != 0)
+				switch(map.getPosMap(x, y)){
+				case -1:
+					g.drawImage(wall, deltax * x, deltay * y, deltax, deltay, null);
+					break;
+				case 1:
 					g.drawImage(tail1, deltax * x, deltay * y, deltax, deltay, null);
+					break;
+				case 2:
+					g.drawImage(tail2, deltax * x, deltay * y, deltax, deltay, null);
+					break;
+				case 3:
+					g.drawImage(tail3, deltax * x, deltay * y, deltax, deltay, null);
+					break;
+				case 4:
+					g.drawImage(tail4, deltax * x, deltay * y, deltax, deltay, null);
+					break;
+				
+				}
+	
+		for (int i = 0; i < game.getPlayers().size(); i++) {
+			if(game.getPlayers().get(i).isAlive())
+				switch(game.getPlayers().get(i).getDirection()){
+				case Player.UP:
+					g.drawImage(PlayersV[game.getPlayers().get(i).getId()-1], deltax * game.getPlayers().get(i).getX()-3, deltay * game.getPlayers().get(i).getY(), deltax*2, deltay*4, null);
+					break;
+				case Player.RIGHT:
+					g.drawImage(PlayersH[game.getPlayers().get(i).getId()-1], deltax * game.getPlayers().get(i).getX()-deltax*3, deltay * game.getPlayers().get(i).getY()-3, deltax*4, deltay*2, null);
+					break;
+				case Player.DOWN:
+					g.drawImage(PlayersV[game.getPlayers().get(i).getId()-1], deltax * game.getPlayers().get(i).getX()-3, deltay * game.getPlayers().get(i).getY()-deltax*3, deltax*2, deltay*4, null);
+					break;
+				case Player.LEFT:
+					g.drawImage(PlayersH[game.getPlayers().get(i).getId()-1], deltax * game.getPlayers().get(i).getX(), deltay * game.getPlayers().get(i).getY()-3, deltax*4, deltay*2, null);
+					break;
+				
+				}
+			}
+			
+			for (int i = 0; i < game.getBots().size(); i++) {
+				if(game.getBots().get(i).isAlive())
+					switch(game.getBots().get(i).getDirection()){
+					case Player.UP:
+						g.drawImage(PlayersV[game.getBots().get(i).getId()-1], deltax * game.getBots().get(i).getX()-3, deltay * game.getBots().get(i).getY(), deltax*2, deltay*4, null);
+						break;
+					case Player.RIGHT:
+						g.drawImage(PlayersH[game.getBots().get(i).getId()-1], deltax * game.getBots().get(i).getX()-deltax*3, deltay * game.getBots().get(i).getY()-3, deltax*4, deltay*2, null);
+						break;
+					case Player.DOWN:
+						g.drawImage(PlayersV[game.getBots().get(i).getId()-1], deltax * game.getBots().get(i).getX()-3, deltay * game.getBots().get(i).getY()-deltax*3, deltax*2, deltay*4, null);
+						break;
+					case Player.LEFT:
+						g.drawImage(PlayersH[game.getBots().get(i).getId()-1], deltax * game.getBots().get(i).getX(), deltay * game.getBots().get(i).getY()-3, deltax*4, deltay*2, null);
+						break;
+					
+					}
+			}
+				
+				
+
+
+		/*
+		for (int i = 0; i < game.getBots().size(); i++) {
+			if(game.getBots().get(i).isAlive())
+				g.drawImage(Players[game.getBots().get(i).getId()], deltax * game.getBots().get(i).getX(), deltay * game.getBots().get(i).getY(), deltax, deltay, null);
+
+
+		}*/
+
 	}
 	
 	private class TAdapter extends KeyAdapter {

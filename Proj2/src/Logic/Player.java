@@ -71,7 +71,7 @@ public class Player {
 			this.x--;
 	}
 	
-	public int[]  nextXPosInThisDir(int dir) {
+	public int[]  nextPosInThisDir(int dir) {
 		int newX=this.x, newY=this.y;
 		
 		if (dir == Player.UP)

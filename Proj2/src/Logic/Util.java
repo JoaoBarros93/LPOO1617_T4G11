@@ -1,4 +1,4 @@
-package GUI;
+package Logic;
 
 import java.awt.List;
 import java.util.ArrayList;

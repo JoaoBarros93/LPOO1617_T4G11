@@ -78,15 +78,16 @@ public class OptionsMenu extends JPanel {
 
 	}
 	
-	public int getAISelected(){
-		String arroz= comboBoxNumBots.getSelectedItem().toString();
+	public int getNumBotsSelected(){
 		return Integer.parseInt(comboBoxNumBots.getSelectedItem().toString());		
 		
 	}
 	
 	public int getBotBehaviourSelected(){
-		//return comboBoxNumBots.getSelectedIndex();
-		return 0;
+		int i =comboBoxAI.getSelectedIndex();
+		
+		return comboBoxAI.getSelectedIndex();
+		
 		
 	}
 	

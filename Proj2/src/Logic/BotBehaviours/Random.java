@@ -2,9 +2,9 @@ package Logic.BotBehaviours;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import GUI.Util;
 import Logic.Map;
 import Logic.Player;
+import Logic.Util;
 
 public class Random implements BotBehaviour {
 	
@@ -18,7 +18,7 @@ public class Random implements BotBehaviour {
 		
 		for(int i = 0; i < dirs.length; i++){
 			int newDir=dirs[i];
-			int[] newPos=player.nextXPosInThisDir(newDir);
+			int[] newPos=player.nextPosInThisDir(newDir);
 			if(!map.validCoord(newPos[0], newPos[1])||map.getPosMap(newPos[0], newPos[1])!=0)
 				continue;
 			else {

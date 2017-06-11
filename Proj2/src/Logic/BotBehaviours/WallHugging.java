@@ -1,8 +1,8 @@
 package Logic.BotBehaviours;
 
-import GUI.Util;
 import Logic.Map;
 import Logic.Player;
+import Logic.Util;
 
 public class WallHugging implements BotBehaviour {
 	
@@ -15,11 +15,11 @@ public class WallHugging implements BotBehaviour {
 		
 		for(int i = 0; i < dirs.length; i++){
 			int newDir=dirs[i];
-			int[] newPos=player.nextXPosInThisDir(newDir);
+			int[] newPos=player.nextPosInThisDir(newDir);
 			if(!map.validCoord(newPos[0], newPos[1])||map.getPosMap(newPos[0], newPos[1])!=0)
 				continue;
 			
-			if(map.getAdjacent(newPos[0], newPos[1])){
+			if(map.isNextToWall(newPos[0], newPos[1])){
 				player.setDirection(dirs[i]);
 				break;
 			}

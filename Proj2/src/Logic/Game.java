@@ -15,12 +15,12 @@ public class Game {
     /**
      * The arena width in meters.
      */
-    public static final int ARENA_WIDTH = 200;
+    public static final int ARENA_WIDTH = 100;
 
     /**
      * The arena height in meters.
      */
-    public static final int ARENA_HEIGHT = 160;
+    public static final int ARENA_HEIGHT = 75;
     
     
     /**
@@ -32,12 +32,13 @@ public class Game {
     /**
      * The players. 
      */
-    Vector<Player> players;
+    private Vector<Player> players;
     
-    /**
+
+	/**
      * The players. 
      */    
-    Vector<Bot> bots;
+    private Vector<Bot> bots;
     
     boolean gameOver=false;
     boolean gameWon=false;
@@ -99,6 +100,16 @@ public class Game {
     	
     	
     }
+    
+    public Vector<Player> getPlayers() {
+		return players;
+	}
+
+
+	public Vector<Bot> getBots() {
+		return bots;
+	}
+
 
     public int getPlayerwhoWon() {
 		return playerwhoWon;
@@ -263,13 +274,13 @@ public class Game {
 	public void initializeMap() {
 		
 			for (int x = 0; x < map.getMaxXsize(); x++){
-				map.setPosMap(x, 0, (byte) 1);
-				map.setPosMap(x, ARENA_HEIGHT - 1, (byte) 1);
+				map.setPosMap(x, 0, (byte) -1);
+				map.setPosMap(x, ARENA_HEIGHT - 1, (byte) -1);
 			}
 			
 			for (int y = 0; y < map.getMaxY(); y++){
-				map.setPosMap(0, y, (byte) 1);
-				map.setPosMap(ARENA_WIDTH - 1, y, (byte) 1);
+				map.setPosMap(0, y, (byte) -1);
+				map.setPosMap(ARENA_WIDTH - 1, y, (byte) -1);
 			}
 				
 
@@ -286,8 +297,8 @@ public class Game {
 		else return false;
 		
 	}
-    	
-    	
+	
+
     	
 
 
