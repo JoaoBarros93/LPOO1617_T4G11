@@ -1,17 +1,48 @@
-# LPOO1617_T4G11
-
-Team Members:
-
-up201505735 - Gil Dinis Magalhães Teixeira - up201505735@fe.up.pt
-
-ec11242 - João Carlos Sousa Barros - ec11242@fe.up.pt
-
-EclEmma:
-![code coverage](https://cloud.githubusercontent.com/assets/25747690/24333958/8b4c1744-1259-11e7-847d-7b393315a201.png)
+# LPOO1617_T4G11 - Final Project - Tron
 
 
-PIT tools:
-![pit tools](https://cloud.githubusercontent.com/assets/25747690/24333957/8b4addf2-1259-11e7-8959-f30f9a3f50d2.png)
+## Setup and Installation
+### Project
+Import Project in Eclipse.
+
+### App
+Simply run the Tron.jar file.
 
 
-[![BCH compliance](https://bettercodehub.com/edge/badge/JoaoBarros93/LPOO1617_T4G11)](https://bettercodehub.com/)
+
+
+## Development documentation
+
+### UML Class Diagram
+Insert Image Here.
+
+### UML State Diagram
+Insert Image Here.
+
+
+### Design Patterns
+Strategy to change between different types of Bots AI's.
+
+### Major Difficulties
+Designing Bots AI's.
+
+### Overall Time Spent
+50h.
+
+
+
+
+
+
+## User manual
+
+### Game Main Menu
+
+### Game Options Menu
+
+### Game SinglePlayer Mode
+
+### Game MultiPlayer Mode
+
+
+
