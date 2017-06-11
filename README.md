@@ -35,6 +35,11 @@ Designing Bots AI's.
 ### Overall Time Spent
 50h.
 
+### Test Coverage
+88.4%
+
+![Test Coverage](https://user-images.githubusercontent.com/25747690/27013972-845c81fc-4ee6-11e7-9d69-bb33303a4dd1.png)
+
 
 ## User manual
 
