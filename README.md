@@ -3,12 +3,12 @@
 
 ## Setup and Installation
 ### Project
-Import Project in Eclipse.
+In Eclipse:
+Import -> General -> Projects from Folder or Archive -> Select Directory -> Finish
+To run select Class Launcher in Package GUI.
 
 ### App
 Simply run the Tron.jar file.
-
-
 
 
 ## Development documentation
