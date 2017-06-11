@@ -23,7 +23,7 @@ public class GamePanelStatus extends JPanel {
 		setBounds(286, 217, 252, 166);
 		setLayout(null);
 
-		
+			setBackground(Color.CYAN);
 
 		
 		setStatusLabel();
