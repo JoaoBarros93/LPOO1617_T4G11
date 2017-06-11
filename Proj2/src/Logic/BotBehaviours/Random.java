@@ -6,11 +6,22 @@ import Logic.Map;
 import Logic.Player;
 import Logic.Util;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Random.
+ */
 public class Random implements BotBehaviour {
 	
 
+	/** The directions. */
 	int[] dirs = { Player.UP, Player.DOWN, Player.LEFT, Player.RIGHT };
 
+	/**
+	 * Move bot.
+	 *
+	 * @param map the map
+	 * @param player the bot
+	 */
 	@Override
 	public void moveBot(Map map, Player player) {
 

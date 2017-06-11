@@ -4,10 +4,21 @@ import Logic.Map;
 import Logic.Player;
 import Logic.Util;
 
+
+/**
+ * The Class WallHugging.
+ */
 public class WallHugging implements BotBehaviour {
 	
+	/** The dirs. */
 	int[] dirs={Player.UP, Player.DOWN, Player.LEFT, Player.RIGHT};
 
+	/**
+	 * Move bot.
+	 *
+	 * @param map the map
+	 * @param player the bot
+	 */
 	@Override
 	public void moveBot(Map map, Player player) {
 		
@@ -25,8 +36,6 @@ public class WallHugging implements BotBehaviour {
 			}
 		}
 		
-		//int dfs=32;
-
 	}
 
 

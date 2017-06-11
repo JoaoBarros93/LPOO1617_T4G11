@@ -5,11 +5,21 @@ import java.util.ArrayList;
 import Logic.Map;
 import Logic.Player;
 
+/**
+ * The Class EnemyAvoidance.
+ */
 public class EnemyAvoidance implements BotBehaviour {
 	
+	/** The directions. */
 	int[] dirs={Player.UP, Player.DOWN, Player.LEFT, Player.RIGHT};
 
 	
+	/**
+	 * Move bot.
+	 *
+	 * @param map the map
+	 * @param player the bot
+	 */
 	@Override
 	public void moveBot(Map map, Player player) {
 		ArrayList<Integer> candidates = new ArrayList<Integer>();
