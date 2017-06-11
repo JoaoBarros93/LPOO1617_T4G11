@@ -159,6 +159,13 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	void displayGame(Graphics g) {
 
+		displayTails(g);
+		displayBots(g);
+		displayPlayers(g);
+	}
+
+	
+	void displayTails(Graphics g) {
 		Map map = game.getMap();
 
 		int deltay = getHeight() / map.getMaxY();
@@ -184,33 +191,17 @@ public class GamePanel extends JPanel implements ActionListener {
 					break;
 
 				}
+	}
 
-		for (int i = 0; i < game.getPlayers().size(); i++) {
-			if (game.getPlayers().get(i).isAlive())
-				switch (game.getPlayers().get(i).getDirection()) {
-				case Player.UP:
-					g.drawImage(PlayersV[game.getPlayers().get(i).getId() - 1],
-							deltax * game.getPlayers().get(i).getX() - 3, deltay * game.getPlayers().get(i).getY(),
-							deltax * 2, deltay * 4, null);
-					break;
-				case Player.RIGHT:
-					g.drawImage(PlayersH[game.getPlayers().get(i).getId() - 1],
-							deltax * game.getPlayers().get(i).getX() - deltax * 3,
-							deltay * game.getPlayers().get(i).getY() - 3, deltax * 4, deltay * 2, null);
-					break;
-				case Player.DOWN:
-					g.drawImage(PlayersV[game.getPlayers().get(i).getId() - 1],
-							deltax * game.getPlayers().get(i).getX() - 3,
-							deltay * game.getPlayers().get(i).getY() - deltax * 3, deltax * 2, deltay * 4, null);
-					break;
-				case Player.LEFT:
-					g.drawImage(PlayersH[game.getPlayers().get(i).getId() - 1],
-							deltax * game.getPlayers().get(i).getX(), deltay * game.getPlayers().get(i).getY() - 3,
-							deltax * 4, deltay * 2, null);
-					break;
+	void displayBots(Graphics g) {
 
-				}
-		}
+		Map map = game.getMap();
+
+		int deltay = getHeight() / map.getMaxY();
+		int deltax = getWidth() / map.getMaxXsize();
+
+
+
 
 		for (int i = 0; i < game.getBots().size(); i++) {
 			if (game.getBots().get(i).isAlive())
@@ -238,6 +229,43 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	}
 
+	void displayPlayers(Graphics g) {
+		Map map = game.getMap();
+
+		int deltay = getHeight() / map.getMaxY();
+		int deltax = getWidth() / map.getMaxXsize();
+
+
+
+		for (int i = 0; i < game.getPlayers().size(); i++) {
+			if (game.getPlayers().get(i).isAlive())
+				switch (game.getPlayers().get(i).getDirection()) {
+				case Player.UP:
+					g.drawImage(PlayersV[game.getPlayers().get(i).getId() - 1],
+							deltax * game.getPlayers().get(i).getX() - 3, deltay * game.getPlayers().get(i).getY(),
+							deltax * 2, deltay * 4, null);
+					break;
+				case Player.RIGHT:
+					g.drawImage(PlayersH[game.getPlayers().get(i).getId() - 1],
+							deltax * game.getPlayers().get(i).getX() - deltax * 3,
+							deltay * game.getPlayers().get(i).getY() - 3, deltax * 4, deltay * 2, null);
+					break;
+				case Player.DOWN:
+					g.drawImage(PlayersV[game.getPlayers().get(i).getId() - 1],
+							deltax * game.getPlayers().get(i).getX() - 3,
+							deltay * game.getPlayers().get(i).getY() - deltax * 3, deltax * 2, deltay * 4, null);
+					break;
+				case Player.LEFT:
+					g.drawImage(PlayersH[game.getPlayers().get(i).getId() - 1],
+							deltax * game.getPlayers().get(i).getX(), deltay * game.getPlayers().get(i).getY() - 3,
+							deltax * 4, deltay * 2, null);
+					break;
+
+				}
+		}
+	}
+	
+	
 	public int getPlayerWhoWon() {
 		return playerWhoWon;
 	}
