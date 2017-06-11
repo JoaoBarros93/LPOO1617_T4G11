@@ -11,10 +11,13 @@ import Logic.BotBehaviours.*;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -28,21 +31,21 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	Board board;
 
-	Image[] PlayersH;
-	Image[] PlayersV;
+	BufferedImage[] PlayersH;
+	BufferedImage[] PlayersV;
 
-	private Image tail1;
-	private Image tail2;
-	private Image tail3;
-	private Image tail4;
+	private BufferedImage tail1;
+	private BufferedImage tail2;
+	private BufferedImage tail3;
+	private BufferedImage tail4;
 
-	private Image wall;
+	private BufferedImage wall;
 
 	public int gameType;
 
 	private BotBehaviour[] botBehaviours = new BotBehaviour[4];
 
-	public Image backGroundGame;
+	public BufferedImage backGroundGame;
 
 	private boolean drawGame = false;
 	boolean gameOver = true;
@@ -56,8 +59,9 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	/**
 	 * Create the panel.
+	 * @throws IOException 
 	 */
-	public GamePanel(Board board) {
+	public GamePanel(Board board) throws IOException {
 		setLayout(null);
 		this.board = board;
 		addKeyListener(new TAdapter());
@@ -108,28 +112,33 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	}
 
-	private void loadImages() {
+	private void loadImages() throws IOException {
+		
+		BufferedImage Player1H=ImageIO.read(Board.class.getResource("/Images/p1H.png"));
+		BufferedImage Player2H=ImageIO.read(Board.class.getResource("/Images/p2H.png"));
+		BufferedImage Player3H=ImageIO.read(Board.class.getResource("/Images/p3H.png"));
+		BufferedImage Player4H=ImageIO.read(Board.class.getResource("/Images/p4H.png"));
+		
+		PlayersH = new BufferedImage[] { Player1H, Player2H, Player3H, Player4H };
+		
+		BufferedImage Player1V=ImageIO.read(Board.class.getResource("/Images/p1V.png"));
+		BufferedImage Player2V=ImageIO.read(Board.class.getResource("/Images/p2V.png"));
+		BufferedImage Player3V=ImageIO.read(Board.class.getResource("/Images/p3V.png"));
+		BufferedImage Player4V=ImageIO.read(Board.class.getResource("/Images/p4V.png"));
+		
+		PlayersV = new BufferedImage[] { Player1V, Player2V, Player3V, Player4V };
+		
 
-		Image Player1H = new ImageIcon("src/Images/p1H.png").getImage();
-		Image Player2H = new ImageIcon("src/Images/p2H.png").getImage();
-		Image Player3H = new ImageIcon("src/Images/p3H.png").getImage();
-		Image Player4H = new ImageIcon("src/Images/p4H.png").getImage();
-		PlayersH = new Image[] { Player1H, Player2H, Player3H, Player4H };
+		
+		
+		tail1 = ImageIO.read(Board.class.getResource("/Images/tail1.png"));		
+		tail2 = ImageIO.read(Board.class.getResource("/Images/tail2.png"));		
+		tail3 = ImageIO.read(Board.class.getResource("/Images/tail3.png"));		
+		tail4 = ImageIO.read(Board.class.getResource("/Images/tail4.png"));		
 
-		Image Player1V = new ImageIcon("src/Images/p1V.png").getImage();
-		Image Player2V = new ImageIcon("src/Images/p2V.png").getImage();
-		Image Player3V = new ImageIcon("src/Images/p3V.png").getImage();
-		Image Player4V = new ImageIcon("src/Images/p4V.png").getImage();
-		PlayersV = new Image[] { Player1V, Player2V, Player3V, Player4V };
+		wall = ImageIO.read(Board.class.getResource("/Images/Wall.png"));
+		backGroundGame = ImageIO.read(Board.class.getResource("/Images/backGame.png"));
 
-		tail1 = new ImageIcon("src/Images/tail1.png").getImage();
-		tail2 = new ImageIcon("src/Images/tail2.png").getImage();
-		tail3 = new ImageIcon("src/Images/tail3.png").getImage();
-		tail4 = new ImageIcon("src/Images/tail4.png").getImage();
-
-		wall = new ImageIcon("src/Images/Wall.png").getImage();
-
-		backGroundGame = new ImageIcon("src/Images/backGame.png").getImage();
 
 	}
 
