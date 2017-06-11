@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 public class MainMenu extends JPanel {
 
 	Board frame;
+	JButton btnSingle;
+	JButton btnMulti;
+	JButton btnOptions;
 
 	/**
 	 * Create the panel.
@@ -21,8 +24,11 @@ public class MainMenu extends JPanel {
 
 		this.frame = frame;
 
-		JButton btnNewButton = new JButton("SinglePlayer");
-		btnNewButton.addActionListener(new ActionListener() {
+	}
+
+	void setSingleButton() {
+		btnSingle = new JButton("SinglePlayer");
+		btnSingle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setpanel(frame.gamePanel);
 				frame.gamePanel.remove(frame.gamePanel.gamePanelStatus);
@@ -35,11 +41,14 @@ public class MainMenu extends JPanel {
 
 			}
 		});
-		btnNewButton.setBounds(329, 265, 142, 30);
-		add(btnNewButton);
+		btnSingle.setBounds(329, 265, 142, 30);
+		add(btnSingle);
 
-		JButton btnNewButton_1 = new JButton("MultiPlayer");
-		btnNewButton_1.addActionListener(new ActionListener() {
+	}
+
+	void setMultiButton() {
+		btnMulti = new JButton("MultiPlayer");
+		btnMulti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setpanel(frame.gamePanel);
 				frame.gamePanel.remove(frame.gamePanel.gamePanelStatus);
@@ -52,17 +61,20 @@ public class MainMenu extends JPanel {
 
 			}
 		});
-		btnNewButton_1.setBounds(329, 317, 142, 30);
-		add(btnNewButton_1);
+		btnMulti.setBounds(329, 317, 142, 30);
+		add(btnMulti);
 
-		JButton btnNewButton_2 = new JButton("Options");
-		btnNewButton_2.addActionListener(new ActionListener() {
+	}
+
+	void setOptionsButton() {
+		btnOptions = new JButton("Options");
+		btnOptions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setpanel(frame.optionsMenu);
 			}
 		});
-		btnNewButton_2.setBounds(329, 367, 142, 30);
-		add(btnNewButton_2);
+		btnOptions.setBounds(329, 367, 142, 30);
+		add(btnOptions);
 
 	}
 
