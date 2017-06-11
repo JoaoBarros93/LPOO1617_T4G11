@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 public class GamePanelStatus extends JPanel {
 
 	public JLabel lblStatus;
+	JButton btnRestart;
+	JButton btnBack;
 
 	/**
 	 * Create the panel.
@@ -21,13 +23,25 @@ public class GamePanelStatus extends JPanel {
 		setBounds(286, 217, 252, 166);
 		setLayout(null);
 
+		
+
+		
+		setStatusLabel();
+		setRestartButton(panel);
+		setBackButton(panel);
+	}
+	
+	void setStatusLabel() {
 		lblStatus = new JLabel("Game Status");
 		lblStatus.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatus.setBounds(85, 30, 92, 14);
 		add(lblStatus);
-
-		JButton btnNewButton = new JButton("Restart");
-		btnNewButton.addActionListener(new ActionListener() {
+	
+	}
+	
+	void setRestartButton(GamePanel panel) {
+		btnRestart = new JButton("Restart");
+		btnRestart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panel.remove(panel.gamePanelStatus);
 				panel.repaint();
@@ -41,18 +55,21 @@ public class GamePanelStatus extends JPanel {
 				}
 			}
 		});
-		btnNewButton.setBounds(30, 89, 79, 23);
-		add(btnNewButton);
-
-		JButton button = new JButton("Back");
-		button.addActionListener(new ActionListener() {
+		btnRestart.setBounds(30, 89, 79, 23);
+		add(btnRestart);
+		
+	}
+	
+	void setBackButton(GamePanel panel) {
+		btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel.board.setpanel(panel.board.mainMenu);
 			}
 		});
-		button.setBounds(145, 89, 79, 23);
-		add(button);
-
+		btnBack.setBounds(145, 89, 79, 23);
+		add(btnBack);
+		
 	}
 
 }

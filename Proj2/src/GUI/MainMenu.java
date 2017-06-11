@@ -21,9 +21,14 @@ public class MainMenu extends JPanel {
 	 */
 	public MainMenu(Board frame) {
 		setLayout(null);
-
+		
 		this.frame = frame;
 
+		setSingleButton();
+		setMultiButton();
+		setOptionsButton();
+
+		
 	}
 
 	void setSingleButton() {
