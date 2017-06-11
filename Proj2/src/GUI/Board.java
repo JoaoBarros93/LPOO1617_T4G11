@@ -2,22 +2,17 @@ package GUI;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-//import java.awt.Toolkit;
+
 import java.io.IOException;
-//import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-//import javax.swing.ImageIcon;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Logic.ResourceLoader;
-//import Logic.ResourceLoader.java;
-
 @SuppressWarnings("serial")
 public class Board extends JFrame {
-	
+
 	public BufferedImage backGroundMainMenu;
 
 	public Image backGroundGame;
@@ -28,15 +23,16 @@ public class Board extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public Board() throws IOException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(150, 150, 806, 629);
 		setResizable(false);
-		
-		backGroundMainMenu=ImageIO.read(Board.class.getResource("/Images/Background.png"));
-		
+
+		backGroundMainMenu = ImageIO.read(Board.class.getResource("/Images/Background.png"));
+
 		mainMenu = new MainMenu(this);
 		optionsMenu = new OptionsMenu(this);
 		gamePanel = new GamePanel(this);

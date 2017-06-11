@@ -9,10 +9,9 @@ import Logic.Player;
 import Logic.BotBehaviours.*;
 
 import java.awt.Graphics;
-import java.awt.Image;
+
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
