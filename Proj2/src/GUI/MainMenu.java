@@ -2,15 +2,15 @@ package GUI;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
-import java.awt.CardLayout;
+
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class MainMenu extends JPanel {
-	
+
 	Board frame;
 
 	/**
@@ -18,9 +18,9 @@ public class MainMenu extends JPanel {
 	 */
 	public MainMenu(Board frame) {
 		setLayout(null);
-		
-		this.frame=frame;
-		
+
+		this.frame = frame;
+
 		JButton btnNewButton = new JButton("SinglePlayer");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -30,24 +30,31 @@ public class MainMenu extends JPanel {
 				try {
 					frame.gamePanel.startGameSingle();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			
-				
+
 			}
 		});
 		btnNewButton.setBounds(329, 265, 142, 30);
 		add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("MultiPlayer");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setpanel(frame.gamePanel);
+				frame.gamePanel.remove(frame.gamePanel.gamePanelStatus);
+				frame.gamePanel.repaint();
+				try {
+					frame.gamePanel.startGameMulti();
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+
 			}
 		});
 		btnNewButton_1.setBounds(329, 317, 142, 30);
 		add(btnNewButton_1);
-		
+
 		JButton btnNewButton_2 = new JButton("Options");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -58,14 +65,14 @@ public class MainMenu extends JPanel {
 		add(btnNewButton_2);
 
 	}
-	
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
+
 		g.drawImage(frame.backGroundMainMenu, 0, 0, getWidth(), getHeight(), null);
-	
+
 		requestFocusInWindow();
 
 	}
-	
+
 }

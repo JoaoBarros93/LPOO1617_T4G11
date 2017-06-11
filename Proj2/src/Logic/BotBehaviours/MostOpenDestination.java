@@ -3,19 +3,18 @@ package Logic.BotBehaviours;
 import Logic.Map;
 import Logic.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MostOpenDestination.
  */
 public class MostOpenDestination implements BotBehaviour {
 
-
-
 	/**
 	 * Move bot.
 	 *
-	 * @param map the map
-	 * @param player the bot
+	 * @param map
+	 *            the map
+	 * @param player
+	 *            the bot
 	 */
 	@Override
 	public void moveBot(Map map, Player player) {

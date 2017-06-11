@@ -1,9 +1,7 @@
 package Logic;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
-
 
 /**
  * The Class Util. Some Functions that could be Useful.
@@ -12,7 +10,8 @@ public class Util {
 	/**
 	 * Shuffle an Array.
 	 *
-	 * @param array the array to shuffle
+	 * @param array
+	 *            the array to shuffle
 	 */
 	public static void shuffleArray(int[] array) {
 		ArrayList<Integer> list = new ArrayList<>();
