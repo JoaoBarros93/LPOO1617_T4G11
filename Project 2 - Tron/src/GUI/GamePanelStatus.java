@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,8 +24,7 @@ public class GamePanelStatus extends JPanel {
 		setBounds(286, 217, 252, 166);
 		setLayout(null);
 
-			setBackground(Color.CYAN);
-
+		setBackground(Color.CYAN);
 		
 		setStatusLabel();
 		setRestartButton(panel);
