@@ -5,7 +5,6 @@ Team Member:
 
 up201505735 - Gil Dinis Magalhães Teixeira - up201505735@fe.up.pt
 
-
 ## Setup and Installation
 ### Project
 In Eclipse:
@@ -70,6 +69,3 @@ Player 2: Use WASD Keys.
 
 BetterCodeHub Badge:
 [![BCH compliance](https://bettercodehub.com/edge/badge/JoaoBarros93/LPOO1617_T4G11)](https://bettercodehub.com/)
-
-
-
