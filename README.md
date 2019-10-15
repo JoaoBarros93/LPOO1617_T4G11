@@ -1,62 +1,71 @@
-# LPOO1617_T4G11
+# LPOO1617_T4G11 - Final Project - Tron
+
 
 Team Member:
 
 up201505735 - Gil Dinis Magalhães Teixeira - up201505735@fe.up.pt
 
-## Project Theme
+## Setup and Installation
+### Project
+In Eclipse:
+Import -> General -> Projects from Folder or Archive -> Select Directory -> Finish
 
-  A Tron-like Game.
+To run select Class Launcher in Package GUI.
 
-## Architecture Design
-  ### Class diagram:
-  ![class diagram](https://cloud.githubusercontent.com/assets/25747690/25568221/f44eb60e-2df5-11e7-8cf8-a5ea4fc81650.png)
-  
- 
-  ### Game’s state diagram:
-  ![Game state diagram](https://cloud.githubusercontent.com/assets/25747690/25568216/f44a3b7e-2df5-11e7-8dbe-46633a28d1e1.png)
-  
-  ### Expected Design Patterns to use on your application
-  -Singleton for the Game Class.
-  
-  -Strategy to implement several bots AI.
+### App
+Simply run the Tron.jar file.
 
-## GUI Design
-  ### Identification/Listing of the main functionalities, present on the GUI.
-  
-  * Choose Game Settings: 
-  	* Number of Bots: 0-3; 
-  	* Choose Bot’s AI: 
-  		* Random; 
-		* Wall-hugging; 
-  		* Enemy Avoidance; 
-  		* Most Open Destination; 
-  * SinglePlayer vs Bots; 
-  * Multiplayer;  
-  
-  ### GUI mock-ups.
-  * Main Menu:
-  
-  ![Main Menu GUI](https://cloud.githubusercontent.com/assets/25747690/25568219/f44b9de8-2df5-11e7-820f-ee0e7dbcd7dc.png)
 
-  * Gameplay:
-  
-  ![GamePlay GUI](https://cloud.githubusercontent.com/assets/25747690/25568220/f44d693e-2df5-11e7-90bc-8579e9b1d2ed.png)
+## Development documentation
 
-  * Multiplayer Menu:
-  
-  ![MultiPlayer GUI](https://cloud.githubusercontent.com/assets/25747690/25568217/f44b3bdc-2df5-11e7-8187-8334ee8be03c.png) 
+### UML Class Diagram
+![class diagram](https://user-images.githubusercontent.com/25747690/27013522-997a77fa-4edd-11e7-840f-2850543eba65.png)
 
-  * Options Menu:
-  
-  ![Options GUI](https://cloud.githubusercontent.com/assets/25747690/25568218/f44b4640-2df5-11e7-825f-7ce353e2fb42.png)
+### UML State Diagram
+![state diagram](https://user-images.githubusercontent.com/25747690/27013525-9b66c87a-4edd-11e7-9215-4b6ad97ec51d.png)
 
- 
 
-## Test Design
-  ### Listing of the expected final test cases.
-  * Test if player goes against a Wall, the player loses. 
-  * Test if player goes against its own tail, the player loses. 
-  * Test if player goes against bot’s tail, the player loses. 
-  * Test if bot goes against player’s tail, the player wins. 
-  * Test AI: Random, Wall-Hugging, Enemy Avoidance, Most Open Destination.
+### Design Patterns
+Strategy - To change with ease between different types of Bots AI's.
+
+### Major Difficulties
+Designing Bots AI's.
+
+### Overall Time Spent
+50h.
+
+### Test Coverage
+88.4%
+
+![Test Coverage](https://user-images.githubusercontent.com/25747690/27013972-845c81fc-4ee6-11e7-9d69-bb33303a4dd1.png)
+
+
+## User manual
+
+### Game Main Menu
+![Main Menu](https://user-images.githubusercontent.com/25747690/27013529-9b77cc6a-4edd-11e7-8e27-fde035b65244.png)
+
+### Game Options Menu
+![Options Menu](https://user-images.githubusercontent.com/25747690/27013526-9b765704-4edd-11e7-9a19-7e2bf58e5501.png)
+
+### Game SinglePlayer Mode
+#### How to play:
+Use the keyboard Arrow keys.
+
+![SinglePlayer](https://user-images.githubusercontent.com/25747690/27013528-9b77c698-4edd-11e7-87b6-ffcdb2076ae7.png)
+
+
+### Game MultiPlayer Mode
+#### How to play:
+Player 1: Use the keyboard Arrow keys.
+
+Player 2: Use WASD Keys.
+
+![MultiPlayer](https://user-images.githubusercontent.com/25747690/27013527-9b774bf0-4edd-11e7-96dd-6e8730191fce.png)
+
+### End Game Panel
+![MultiPlayer](https://user-images.githubusercontent.com/25747690/27013524-9b4b5af4-4edd-11e7-93c6-2d3ea8bfcd5c.png)
+
+
+BetterCodeHub Badge:
+[![BCH compliance](https://bettercodehub.com/edge/badge/JoaoBarros93/LPOO1617_T4G11)](https://bettercodehub.com/)
